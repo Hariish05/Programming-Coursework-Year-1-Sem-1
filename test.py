@@ -26,8 +26,9 @@ while True:
         print("Please enter a number only: ")
         continue
 
+        # replace all print statements with a function class from either student code, courses code or enrollment code
     match userInput:
-        case 1:
+        case 1: 
             print("hi")
         case 2:
             print("im sad")
