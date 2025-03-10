@@ -1,7 +1,3 @@
-
-print("thisis to test smtg")
-
-# HELP RESOLVE THIS PLS
-
-# whyy wont it resolve :(((((
-
+# this is code one 
+# then this is code 2 
+#then this is code 3
