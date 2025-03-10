@@ -25,25 +25,20 @@ while True:
     except:
         print("Please enter a number only: ")
         continue
-#hellu
-    if userInput == 1:
-        #add new student function
-        #make sure it goes into #STUDENTS CODE
-    elif userInput == 2: ''' WHY IS IT RED AND SAYING ITS AN ERROR HELP SOS FFS'''
-        #add new course function
-        #make sure it goes into #COURSE CODE
-    elif userInput == 3:
-        #add a enroll student function
-        #make sure it goes into #STUDENTS CODE
-    elif userInput == 4:
-        #add a drop course function
-        #make sure it goes into #COURSE CODE
-    elif userInput == 5:            
-        #add a view courses function
-        #make sure it goes into #COURSE CODE
-    elif userInput == 6:
-        #add view student function
-        #make sure it goes into #STUDENTS CODE
-    elif userInput == 7:
-        print("Thank you for using the course enrollment program!")
-        break
+
+    match userInput:
+        case 1:
+            print("hi")
+        case 2:
+            print("im sad")
+        case 3:
+            print("me")
+        case 4:
+            print("me")      
+        case 5:
+            print("me")
+        case 6:
+            print("me")
+        case 7:
+            print("me")
+        
