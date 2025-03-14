@@ -42,6 +42,8 @@ while True:
             print("me")
         case 7:
             print("me")
+        case _:
+            print("Invalid Choice. Try Again")
         
 
 
