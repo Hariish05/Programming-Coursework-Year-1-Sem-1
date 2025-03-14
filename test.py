@@ -35,15 +35,11 @@ while True:
         case 3:
             print("me")
         case 4:
-            print("me")      
+            print("me2")      
         case 5:
-            print("me")
+            print("me3")
         case 6:
-            print("me")
+            print("me4")
         case 7:
-            print("me")
+            print("me5")
         
-
-
-
-# HI This is a test
