@@ -1,3 +1,3 @@
 with open("tempfile.txt", "r") as f:
-    content = f.readlines()
+    content = f.read()
     print(content)
