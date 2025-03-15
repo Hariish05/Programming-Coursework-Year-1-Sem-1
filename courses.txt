@@ -1,0 +1,2 @@
+Course ID: CSC1024, Course Name: Programming Principles, Maximum seats: 30 
+Course ID: ABC123, Course Name: Alphabets, Maximum seats: 5 
