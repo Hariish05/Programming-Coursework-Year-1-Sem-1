@@ -7,9 +7,9 @@ def adding_new_student(student_ID, student_name, student_contact):
     ''' Function: To allow new students to add their student id, name and phone number '''
 
     with open("students.txt", "a") as STUDENTS_INFO:
-        STUDENTS_INFO.write("Student ID: " + student_ID + ", ")
-        STUDENTS_INFO.write("Student Name: " + student_name + ", ")
-        STUDENTS_INFO.write("Student Contact Number: " + student_contact + "\n")
+        STUDENTS_INFO.write(f"Student ID: {student_ID}, ")
+        STUDENTS_INFO.write(f"Student Name: {student_name}, ")
+        STUDENTS_INFO.write(f"Student Contact Number: {student_contact} \n")
 
 #COURSES CODE
 def adding_new_course(course_ID, course_name, max_seats):
@@ -17,8 +17,8 @@ def adding_new_course(course_ID, course_name, max_seats):
                     Also clearly displays the courses and their information '''
 
     with open("courses.txt", "a") as COURSES_INFO: #writes the courses name in the textfile
-        COURSES_INFO.write("Course ID: " + course_ID + ", ")
-        COURSES_INFO.write("Course Name: " + course_name + ", ")
+        COURSES_INFO.write(f"Course ID: {course_ID}, ")
+        COURSES_INFO.write(f"Course Name: {course_name}, ")
         COURSES_INFO.write(f"Maximum seats: {max_seats} \n")
 
     with open("courses.txt", "r") as COURSES_INFO: #shows the courses
@@ -34,7 +34,7 @@ def course_enrollment():
 # ASKING USER RESPONSE CODE
 while True:
 
-    print("Welcome to the course enrollment program!")
+    print("\nWelcome to the course enrollment program!")
     print("1. Add a new student")
     print("2. Add a new course")
     print("3. Enroll a student in a course")
