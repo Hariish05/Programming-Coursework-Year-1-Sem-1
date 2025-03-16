@@ -1,3 +1,6 @@
+import datetime
+
+
 STUDENTS_INFO = "students.txt"
 COURSES_INFO = "courses.txt"
 ENROLLMENT_INFO = "enrollment.txt"
@@ -21,8 +24,8 @@ def adding_new_course(course_ID, course_name, max_seats):
         COURSES_INFO.write(f"Course Name: {course_name}, ")
         COURSES_INFO.write(f"Maximum seats: {max_seats} \n")
 
-    with open("courses.txt", "r") as COURSES_INFO: #shows the courses
-        print(COURSES_INFO.read())
+    #with open("courses.txt", "r") as COURSES_INFO: #shows the courses
+        #print(COURSES_INFO.read())
 
 # ENROLLMENT CODE
 def course_enrollment():
@@ -52,7 +55,7 @@ while True:
         # replace all print statements with a function class from either student code, courses code or enrollment code
     match userInput:
         case 1: #adding new student
-            student_ID = input("Please enter your student ID: ") #not an int(input()) because the student ID could contain Letters for different departments
+            student_ID = input("Please enter your student ID: ") # not an int(input()) because the student ID could contain Letters for different departments
             student_name = input("Please enter your name: ")
             student_contact = int(input("Please enter your phone number: "))
 
@@ -60,13 +63,14 @@ while True:
             adding_new_student(student_ID, student_name,student_contact)
 
         case 2: #to make a new course
-            course_ID = input("Please input the course ID: ").upper() #not int(input()) cause can have acronym for course
+            course_ID = input("Please input the course ID: ").upper() # not int(input()) cause can have acronym for course
             course_name = input("Please input course name: ")
             max_seats = int(input("Please input maximum seats for the course: "))
 
             print("New course added >>")
-            print(f"New Course: {course_ID}, Course Name: {course_name}, Maximum Seats: {max_seats}")
-            #adding_new_course(course_ID, course_name, max_seats)    # MINOR PROBLEM: it displays everything added into the courses.txt, kinda builds up after a while, try to only display the latest one added into the txt file
+            print(f"New Course: {course_ID}, Course Name: {course_name}, Maximum Seats: {max_seats}")   
+            adding_new_course(course_ID, course_name, max_seats)  
+        
         case 3: #Enroll a student in a course
             print("me")
         case 4: # Drop a course
