@@ -1,5 +1,5 @@
 import os.path
-import pathLib
+import pathlib
 #HELLO TEST
 
 STUDENTS_INFO = "students.txt"
