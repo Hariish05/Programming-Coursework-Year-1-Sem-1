@@ -56,6 +56,7 @@ while True:
             student_name = input("Please enter your name: ")
             student_contact = int(input("Please enter your phone number: "))
 
+            print("New student added.")
             adding_new_student(student_ID, student_name,student_contact)
 
         case 2: #to make a new course
@@ -63,6 +64,7 @@ while True:
             course_name = input("Please input course name: ")
             max_seats = int(input("Please input maximum seats for the course: "))
 
+            print("New course added.")
             adding_new_course(course_ID, course_name, max_seats)
 
         case 3: #Enroll a student in a course
