@@ -65,9 +65,8 @@ while True:
             max_seats = int(input("Please input maximum seats for the course: "))
 
             print("New course added >>")
-            print()
-            #adding_new_course(course_ID, course_name, max_seats)                     # >>>> MINOR PROBLEM: it displays everything added into the courses.txt, kinda builds up after a while
-                                                                                     #      try to only display the latest one added into the txt file
+            print(f"New Course: {course_ID}, Course Name: {course_name}, Maximum Seats: {max_seats}")
+            #adding_new_course(course_ID, course_name, max_seats)    # MINOR PROBLEM: it displays everything added into the courses.txt, kinda builds up after a while, try to only display the latest one added into the txt file
         case 3: #Enroll a student in a course
             print("me")
         case 4: # Drop a course
