@@ -1,3 +1,4 @@
+
 import os.path
 import pathlib
 import datetime
@@ -15,23 +16,38 @@ def adding_new_student(student_ID, student_name, student_contact):
         STUDENTS_INFO.write(f"Student Name: {student_name}, ")
         STUDENTS_INFO.write(f"Student Contact Number: {student_contact} \n")
 
+
 #COURSES CODE
-def adding_new_course(course_ID, course_name, max_seats):
-    ''' Function:   To allow new courses to be added with their course ID, course name and maximum seats for the course
+def adding_new_course(course_ID, course_name, available_seats, total_students):
+    ''' Function:   To allow new courses to be added with their course ID, course name and available seats for the course
                     Also clearly displays the courses and their information '''
 
     with open("courses.txt", "a") as COURSES_INFO: # writes the courses name in the textfile
         COURSES_INFO.write(f"Course ID: {course_ID}, ")
         COURSES_INFO.write(f"Course Name: {course_name}, ")
-        COURSES_INFO.write(f"Maximum seats: {max_seats} \n")
-
+        COURSES_INFO.write(f"Available Seats: {available_seats}, ")
+        COURSES_INFO.write(f"Total students in course: {total_students} \n")
+        
     # with open("courses.txt", "r") as COURSES_INFO: #shows the courses
     #     print(COURSES_INFO.read())
 
-# ENROLLMENT CODE
-def course_enrollment():
-    '''(TEXT)'''
 
+# ENROLLMENT CODE 
+def course_enrollment(student_ID, course_ID):
+    '''FUNCTION:    To allow student to enroll in a course using their student ID, the course ID they want to enroll in
+                    Also displays the enrolment date'''
+    
+    dateToday = datetime.datetime.now()
+
+    with open("enrollment.txt", "a") as ENROLLMENT_INFO:
+        ENROLLMENT_INFO.write(f"Student ID: {student_ID}")
+        ENROLLMENT_INFO.write(f"Course ID: {course_ID}")
+        ENROLLMENT_INFO.write(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")       # AAUGHHHHH ITS NOT WORKING
+    
+    with open("enrollment.txt","r") as ENROLLMENT_INFO:
+        print(ENROLLMENT_INFO.read())
+        
+=======
     #with open("enrollment.txt", "a") as ENROLLMENT_INFO:
 
 def course_drop(student_ID, course_ID):
@@ -46,6 +62,7 @@ def course_drop(student_ID, course_ID):
             if student_ID in records and course_ID in records: #if studentid and courseid in records, it deletes it, if not it skips and re-write record
                 continue
             ENROLLMENT_INFO.write(records)
+
 
 # ASKING USER RESPONSE CODE
 while True:
@@ -68,7 +85,7 @@ while True:
         # replace all print statements with a function class from either student code, courses code or enrollment code
     match userInput:
         case 1: #adding new student
-            student_ID = input("Please enter your student ID: ") #not an int(input()) because the student ID could contain Letters for different departments
+            student_ID = input("Please enter your student ID: ") # not an int(input()) because the student ID could contain Letters for different departments
             student_name = input("Please enter your name: ")
             student_contact = int(input("Please enter your phone number: "))
 
@@ -76,6 +93,23 @@ while True:
             adding_new_student(student_ID, student_name,student_contact)
 
         case 2: #to make a new course
+            course_ID = input("Please input the course ID: ").upper() # not int(input()) cause can have acronym for course
+            course_name = input("Please input course name: ")
+            available_seats = int(input("Please input available seats for the course: "))
+            total_students = 0
+
+            print("New course added >>")
+            print(f"New Course: {course_ID}, Course Name: {course_name}, Total Available Seats: {available_seats}")   
+            adding_new_course(course_ID, course_name, available_seats, total_students)  
+        
+        case 3: #Enroll a student in a course
+            student_ID = input("Please enter your student ID: ")
+            course_ID = input("Please input the course ID you want to enrol in: ").upper()
+            if total_students < available_seats:
+                course_enrollment(student_ID, course_ID)
+            else: 
+                print("Course is currently full.")
+          
             course_ID = input("Please input the course ID: ").upper() #not int(input()) cause can have acronym for course
             course_name = input("Please input course name: ")
             max_seats = int(input("Please input maximum seats for the course: "))
