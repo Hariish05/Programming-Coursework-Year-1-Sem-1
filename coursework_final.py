@@ -16,7 +16,7 @@ def adding_new_course(course_ID, course_name, max_seats):
     ''' Function:   To allow new courses to be added with their course ID, course name and maximum seats for the course
                     Also clearly displays the courses and their information '''
 
-    with open("courses.txt", "a") as COURSES_INFO: #writes the courses name in the textfile
+    with open("courses.txt", "a") as COURSES_INFO: # writes the courses name in the textfile
         COURSES_INFO.write(f"Course ID: {course_ID}, ")
         COURSES_INFO.write(f"Course Name: {course_name}, ")
         COURSES_INFO.write(f"Maximum seats: {max_seats} \n")
@@ -44,7 +44,7 @@ while True:
     print("7. Exit")
 
     try:
-        userInput = int(input("Enter a number: \n"))
+        userInput = int(input("Enter a number: "))
     except:
         print("Please enter a number only: ")
         continue
@@ -60,13 +60,14 @@ while True:
             adding_new_student(student_ID, student_name,student_contact)
 
         case 2: #to make a new course
-            course_ID = input("Please input the course ID: ") #not int(input()) cause can have acronym for course
+            course_ID = input("Please input the course ID: ").upper() #not int(input()) cause can have acronym for course
             course_name = input("Please input course name: ")
             max_seats = int(input("Please input maximum seats for the course: "))
 
-            print("New course added.")
-            adding_new_course(course_ID, course_name, max_seats)
-
+            print("New course added >>")
+            print()
+            #adding_new_course(course_ID, course_name, max_seats)                     # >>>> MINOR PROBLEM: it displays everything added into the courses.txt, kinda builds up after a while
+                                                                                     #      try to only display the latest one added into the txt file
         case 3: #Enroll a student in a course
             print("me")
         case 4: # Drop a course
