@@ -33,10 +33,19 @@ def course_enrollment():
     '''(TEXT)'''
 
     #with open("enrollment.txt", "a") as ENROLLMENT_INFO:
+
+def course_drop(student_ID, course_ID):
+    ''' Function: To ask user to enter student id and course id that needs to be dropped from a course'''
+
+    with open("enrollment.txt", "r") as ENROLLMENT_INFO:
+        record_line = ENROLLMENT_INFO.readlines() #each line is now stored in record_line
+        # print(record_line), This was just for me to see. delete before submitting
     
-# Change X to a better variable name. this is to show enrollment date automatically so that user doesnt have to put it in manually
-# x = datetime.datetime.now() 
-# print(x.strftime("%d %B %Y"))
+    with open("enrollment.txt", "w") as ENROLLMENT_INFO:
+        for records in record_line: 
+            if student_ID in records and course_ID in records: #if studentid and courseid in records, it deletes it, if not it skips and re-write record
+                continue
+            ENROLLMENT_INFO.write(records)
 
 # ASKING USER RESPONSE CODE
 while True:
@@ -77,8 +86,14 @@ while True:
                                                                                      #      try to only display the latest one added into the txt file
         case 3: #Enroll a student in a course
             print("me")
+
         case 4: # Drop a course
-            print("me")      
+            student_ID = input("Please enter the student ID:")
+            course_ID = input("Please enter the course ID: ").upper()
+
+            course_drop(student_ID,course_ID)
+            print("You have successfully dropped the course")
+            
         case 5: # View courses available and space left
             print("me")
         case 6: # View all students and information
