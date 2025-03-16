@@ -1,6 +1,16 @@
+import os.path
+import pathLib
+#HELLO TEST
+
 STUDENTS_INFO = "students.txt"
 COURSES_INFO = "courses.txt"
-ENROLLMENT_INFO = "enrollment.txt"
+ENROLLMENT_INFO = "C:\Users\harii\OneDrive - Sunway Education Group\Programming Coursework Year 1 Sem 1\enrollment.txt"
+
+# with open("enrollment.txt", "r") as ENROLLMENT_INFO:
+#     content = ENROLLMENT_INFO.readlines()
+#     print(content[0])
+
+
 
 # STUDENT CODE
 def adding_new_student(student_ID, student_name, student_contact): 
@@ -22,6 +32,7 @@ def adding_new_course(course_ID, course_name, max_seats):
         COURSES_INFO.write(f"Maximum seats: {max_seats} \n")
 
     with open("courses.txt", "r") as COURSES_INFO: #shows the courses
+        print()
         print(COURSES_INFO.read())
 
 # ENROLLMENT CODE
