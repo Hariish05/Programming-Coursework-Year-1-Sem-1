@@ -1,5 +1,6 @@
 import os.path
 import pathlib
+import datetime
 
 STUDENTS_INFO = "students.txt"
 COURSES_INFO = "courses.txt"
@@ -24,15 +25,18 @@ def adding_new_course(course_ID, course_name, max_seats):
         COURSES_INFO.write(f"Course Name: {course_name}, ")
         COURSES_INFO.write(f"Maximum seats: {max_seats} \n")
 
-    with open("courses.txt", "r") as COURSES_INFO: #shows the courses
-        print(COURSES_INFO.read())
+    # with open("courses.txt", "r") as COURSES_INFO: #shows the courses
+    #     print(COURSES_INFO.read())
 
 # ENROLLMENT CODE
 def course_enrollment():
     '''(TEXT)'''
 
     #with open("enrollment.txt", "a") as ENROLLMENT_INFO:
-        
+    
+# Change X to a better variable name. this is to show enrollment date automatically so that user doesnt have to put it in manually
+# x = datetime.datetime.now() 
+# print(x.strftime("%d %B %Y"))
 
 # ASKING USER RESPONSE CODE
 while True:
@@ -69,7 +73,7 @@ while True:
 
             print("New course added >>")
             print()
-            #adding_new_course(course_ID, course_name, max_seats)                     # >>>> MINOR PROBLEM: it displays everything added into the courses.txt, kinda builds up after a while
+            adding_new_course(course_ID, course_name, max_seats)                     # >>>> MINOR PROBLEM: it displays everything added into the courses.
                                                                                      #      try to only display the latest one added into the txt file
         case 3: #Enroll a student in a course
             print("me")
