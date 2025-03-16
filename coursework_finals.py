@@ -1,3 +1,7 @@
+import os.path
+import pathlib
+import datetime
+
 STUDENTS_INFO = "students.txt"
 COURSES_INFO = "courses.txt"
 ENROLLMENT_INFO = "enrollment.txt"
@@ -16,20 +20,32 @@ def adding_new_course(course_ID, course_name, max_seats):
     ''' Function:   To allow new courses to be added with their course ID, course name and maximum seats for the course
                     Also clearly displays the courses and their information '''
 
-    with open("courses.txt", "a") as COURSES_INFO: #writes the courses name in the textfile
+    with open("courses.txt", "a") as COURSES_INFO: # writes the courses name in the textfile
         COURSES_INFO.write(f"Course ID: {course_ID}, ")
         COURSES_INFO.write(f"Course Name: {course_name}, ")
         COURSES_INFO.write(f"Maximum seats: {max_seats} \n")
 
-    with open("courses.txt", "r") as COURSES_INFO: #shows the courses
-        print(COURSES_INFO.read())
+    # with open("courses.txt", "r") as COURSES_INFO: #shows the courses
+    #     print(COURSES_INFO.read())
 
 # ENROLLMENT CODE
 def course_enrollment():
     '''(TEXT)'''
 
     #with open("enrollment.txt", "a") as ENROLLMENT_INFO:
-        
+
+def course_drop(student_ID, course_ID):
+    ''' Function: To ask user to enter student id and course id that needs to be dropped from a course'''
+
+    with open("enrollment.txt", "r") as ENROLLMENT_INFO:
+        record_line = ENROLLMENT_INFO.readlines() #each line is now stored in record_line
+        # print(record_line), This was just for me to see. delete before submitting
+    
+    with open("enrollment.txt", "w") as ENROLLMENT_INFO:
+        for records in record_line: 
+            if student_ID in records and course_ID in records: #if studentid and courseid in records, it deletes it, if not it skips and re-write record
+                continue
+            ENROLLMENT_INFO.write(records)
 
 # ASKING USER RESPONSE CODE
 while True:
@@ -44,7 +60,7 @@ while True:
     print("7. Exit")
 
     try:
-        userInput = int(input("Enter a number: \n"))
+        userInput = int(input("Enter a number: "))
     except:
         print("Please enter a number only: ")
         continue
@@ -56,19 +72,28 @@ while True:
             student_name = input("Please enter your name: ")
             student_contact = int(input("Please enter your phone number: "))
 
+            print("New student added.")
             adding_new_student(student_ID, student_name,student_contact)
 
         case 2: #to make a new course
-            course_ID = input("Please input the course ID: ") #not int(input()) cause can have acronym for course
+            course_ID = input("Please input the course ID: ").upper() #not int(input()) cause can have acronym for course
             course_name = input("Please input course name: ")
             max_seats = int(input("Please input maximum seats for the course: "))
 
-            adding_new_course(course_ID, course_name, max_seats)
-
+            print("New course added >>")
+            print()
+            adding_new_course(course_ID, course_name, max_seats)                     # >>>> MINOR PROBLEM: it displays everything added into the courses.
+                                                                                     #      try to only display the latest one added into the txt file
         case 3: #Enroll a student in a course
             print("me")
+
         case 4: # Drop a course
-            print("me")      
+            student_ID = input("Please enter the student ID:")
+            course_ID = input("Please enter the course ID: ").upper()
+
+            course_drop(student_ID,course_ID)
+            print("You have successfully dropped the course")
+            
         case 5: # View courses available and space left
             print("me")
         case 6: # View all students and information
@@ -77,4 +102,5 @@ while True:
             break
         case _:
             print("Invalid Choice. Try Again")
+        
         
