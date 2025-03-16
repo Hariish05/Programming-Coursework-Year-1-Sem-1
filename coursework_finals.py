@@ -14,8 +14,9 @@ def adding_new_student(student_ID, student_name, student_contact):
         STUDENTS_INFO.write(f"Student Name: {student_name}, ")
         STUDENTS_INFO.write(f"Student Contact Number: {student_contact} \n")
 
+
 #COURSES CODE
-def adding_new_course(course_ID, course_name, available_seats):
+def adding_new_course(course_ID, course_name, available_seats, total_students):
     ''' Function:   To allow new courses to be added with their course ID, course name and available seats for the course
                     Also clearly displays the courses and their information '''
 
@@ -23,10 +24,8 @@ def adding_new_course(course_ID, course_name, available_seats):
         COURSES_INFO.write(f"Course ID: {course_ID}, ")
         COURSES_INFO.write(f"Course Name: {course_name}, ")
         COURSES_INFO.write(f"Available Seats: {available_seats}, ")
-        COURSES_INFO.write("Total students in course: {total_students} \n")
+        COURSES_INFO.write(f"Total students in course: {total_students} \n")
 
-    #with open("courses.txt", "r") as COURSES_INFO: #shows the courses
-        #print(COURSES_INFO.read())
 
 # ENROLLMENT CODE 
 def course_enrollment(student_ID, course_ID):
@@ -38,11 +37,12 @@ def course_enrollment(student_ID, course_ID):
     with open("enrollment.txt", "a") as ENROLLMENT_INFO:
         ENROLLMENT_INFO.write(f"Student ID: {student_ID}")
         ENROLLMENT_INFO.write(f"Course ID: {course_ID}")
-        ENROLLMENT_INFO.write("Enrolment Date:", dateToday.strftime("%d %B %Y"))
+        ENROLLMENT_INFO.write(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")       # AAUGHHHHH ITS NOT WORKING
     
     with open("enrollment.txt","r") as ENROLLMENT_INFO:
         print(ENROLLMENT_INFO.read())
         
+
 
 # ASKING USER RESPONSE CODE
 while True:
@@ -80,7 +80,7 @@ while True:
 
             print("New course added >>")
             print(f"New Course: {course_ID}, Course Name: {course_name}, Total Available Seats: {available_seats}")   
-            adding_new_course(course_ID, course_name, available_seats)  
+            adding_new_course(course_ID, course_name, available_seats, total_students)  
         
         case 3: #Enroll a student in a course
             student_ID = input("Please enter your student ID: ")
