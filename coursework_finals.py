@@ -121,10 +121,12 @@ while True:
             
         case 5: # View courses available and space left
             with open("courses.txt", "r") as COURSES_INFO:
-                print(COURSES_INFO.read())
+                print(f"\n{COURSES_INFO.read()}")
+            
 
         case 6: # View all students and information
-            print("me")
+            with open("students.txt", "r") as STUDENT_INFO:
+                print(f"\n{STUDENT_INFO.read()}")
 
         case 7:
             break
