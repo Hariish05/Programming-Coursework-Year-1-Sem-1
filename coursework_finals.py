@@ -28,7 +28,7 @@ def adding_new_course(course_ID, course_name, available_seats, total_students):
         COURSES_INFO.write(f"Available Seats: {available_seats}, ")
         COURSES_INFO.write(f"Total students in course: {total_students} \n")
         
-    # with open("courses.txt", "r") as COURSES_INFO: #shows the courses
+    # with open("courses.txt", "r") as COURSES_INFO:        # shows the courses, for testing purposes
     #     print(COURSES_INFO.read())
 
 
@@ -39,20 +39,21 @@ def course_enrollment(student_ID, course_ID):
     
     dateToday = datetime.datetime.now()
 
-    with open("courses.txt", "r") as ENROLLMENT_INFO: # AAUGHHHHH ITS NOT WORKING
-         total_students = int(COURSES_INFO.readline())
-         if total_students < available_seats:
-                course_enrollment(student_ID, course_ID)
-                total_students += 1
-                with open("courses.txt", "a") as ENROLLMENT_INFO:
+    with open("courses.txt", "r") as ENROLLMENT_INFO:           # AAUGHHHHH ITS NOT WORKING
+         total_students = int(COURSES_INFO.readline())          # this is line to be removed >>> readline() cant read last character in string (only first few characters)
+         if total_students < available_seats:                   # there is probably a better method for this but i cant think of it rn
+                course_enrollment(student_ID, course_ID)        # What im trying to do: Check whether total_students is less than than available_seats (whether there's still availability in course)
+                total_students += 1                             #                       , if yes got space then add student info and course info (and date) into enrolment.txt file                      
+                with open("courses.txt", "a") as ENROLLMENT_INFO:                      #, and total_students counter + 1 / available_seats - 1
                     ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
                     ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
-                    ENROLLMENT_INFO.write(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")       
-    with open("enrollment.txt","r") as ENROLLMENT_INFO:
-        print(ENROLLMENT_INFO.read())
-        
-    #with open("enrollment.txt", "a") as ENROLLMENT_INFO:
+                    ENROLLMENT_INFO.write(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")  
 
+    with open("enrollment.txt","r") as ENROLLMENT_INFO:         # these two lines for testing purposes, show enrollment info
+        print(ENROLLMENT_INFO.read())
+
+
+# CODE TO DROP COURSE
 def course_drop(student_ID, course_ID):
     ''' Function: To ask user to enter student id and course id that needs to be dropped from a course'''
 
@@ -85,7 +86,7 @@ while True:
         print("Please enter a number only: ")
         continue
 
-        # replace all print statements with a function class from either student code, courses code or enrollment code
+    # replace all print statements with a function class from either student code, courses code or enrollment code
     match userInput:
         case 1: #adding new student
             student_ID = input("Please enter your student ID: ") # not an int(input()) because the student ID could contain Letters for different departments
@@ -96,7 +97,7 @@ while True:
             adding_new_student(student_ID, student_name,student_contact)
 
         case 2: #to make a new course
-            course_ID = input("Please input the course ID: ").upper() # not int(input()) cause can have acronym for course
+            course_ID = input("Please input the course ID: ").upper() # not int(input()) cause course can be acronym
             course_name = input("Please input course name: ")
             available_seats = int(input("Please input available seats for the course: "))
             total_students = 0
