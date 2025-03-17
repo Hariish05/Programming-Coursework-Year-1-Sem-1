@@ -15,7 +15,7 @@ def adding_new_student(student_ID, student_name, student_contact):
         STUDENTS_INFO.write(f"Student Contact Number: {student_contact} \n")
 
 
-#COURSES CODE
+# COURSES CODE
 def adding_new_course(course_ID, course_name, available_seats, total_students):
     ''' Function:   To allow new courses to be added with their course ID, course name and available seats for the course
                     Also clearly displays the courses and their information '''
@@ -29,16 +29,20 @@ def adding_new_course(course_ID, course_name, available_seats, total_students):
 
 # ENROLLMENT CODE 
 def course_enrollment(student_ID, course_ID):
-    '''FUNCTION:    To allow student to enroll in a course using their student ID, the course ID they want to enroll in
+    '''FUNCTION:    To allow student to enroll in a course using their student ID, and course ID they want to enroll in
                     Also displays the enrolment date'''
     
     dateToday = datetime.datetime.now()
 
-    with open("enrollment.txt", "a") as ENROLLMENT_INFO:
-        ENROLLMENT_INFO.write(f"Student ID: {student_ID}")
-        ENROLLMENT_INFO.write(f"Course ID: {course_ID}")
-        ENROLLMENT_INFO.write(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")       # AAUGHHHHH ITS NOT WORKING
-    
+    with open("courses.txt", "r") as ENROLLMENT_INFO: # AAUGHHHHH ITS NOT WORKING
+         total_students = int(COURSES_INFO.readline())
+         if total_students < available_seats:
+                course_enrollment(student_ID, course_ID)
+                total_students += 1
+                with open("courses.txt", "a") as ENROLLMENT_INFO:
+                    ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
+                    ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
+                    ENROLLMENT_INFO.write(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")       
     with open("enrollment.txt","r") as ENROLLMENT_INFO:
         print(ENROLLMENT_INFO.read())
         
@@ -85,10 +89,8 @@ while True:
         case 3: #Enroll a student in a course
             student_ID = input("Please enter your student ID: ")
             course_ID = input("Please input the course ID you want to enrol in: ").upper()
-            if total_students < available_seats:
-                course_enrollment(student_ID, course_ID)
-            else: 
-                print("Course is currently full.")
+
+            course_enrollment(student_ID, course_ID)
             
         case 4: # Drop a course
             print("me")      
