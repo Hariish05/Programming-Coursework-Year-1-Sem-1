@@ -51,7 +51,6 @@ def course_enrollment(student_ID, course_ID):
     with open("enrollment.txt","r") as ENROLLMENT_INFO:
         print(ENROLLMENT_INFO.read())
         
-=======
     #with open("enrollment.txt", "a") as ENROLLMENT_INFO:
 
 def course_drop(student_ID, course_ID):
@@ -109,28 +108,9 @@ while True:
         case 3: #Enroll a student in a course
             student_ID = input("Please enter your student ID: ")
             course_ID = input("Please input the course ID you want to enrol in: ").upper()
-<<<<<<< HEAD
 
             course_enrollment(student_ID, course_ID)
             
-=======
-            if total_students < available_seats:
-                course_enrollment(student_ID, course_ID)
-            else: 
-                print("Course is currently full.")
-          
-            course_ID = input("Please input the course ID: ").upper() #not int(input()) cause can have acronym for course
-            course_name = input("Please input course name: ")
-            max_seats = int(input("Please input maximum seats for the course: "))
-
-            print("New course added >>")
-            print()
-            adding_new_course(course_ID, course_name, max_seats)                     # >>>> MINOR PROBLEM: it displays everything added into the courses.
-                                                                                     #      try to only display the latest one added into the txt file
-        case 3: #Enroll a student in a course
-            print("me")
-
->>>>>>> 16aed92e02058216cc51f33ce1aa4835ffc30f25
         case 4: # Drop a course
             student_ID = input("Please enter the student ID:")
             course_ID = input("Please enter the course ID: ").upper()

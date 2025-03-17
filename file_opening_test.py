@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-    
-=======
 import os.path
 import pathlib
 
@@ -22,4 +18,3 @@ else:
 
 # with open("tempfile.txt", "r") as f:
 #     print(f.read())
->>>>>>> 16aed92e02058216cc51f33ce1aa4835ffc30f25
