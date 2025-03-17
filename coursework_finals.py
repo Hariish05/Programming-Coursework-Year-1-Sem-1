@@ -47,7 +47,7 @@ def course_enrollment(student_ID, course_ID):
                 with open("courses.txt", "a") as ENROLLMENT_INFO:                      #, and total_students counter + 1 / available_seats - 1
                     ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
                     ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
-                    ENROLLMENT_INFO.write(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")  
+                    ENROLLMENT_INFO.write(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")  # date format: dateNumber monthName year
 
     with open("enrollment.txt","r") as ENROLLMENT_INFO:         # these two lines for testing purposes, show enrollment info
         print(ENROLLMENT_INFO.read())
@@ -106,7 +106,7 @@ while True:
             print(f"New Course: {course_ID}, Course Name: {course_name}, Total Available Seats: {available_seats}")   
             adding_new_course(course_ID, course_name, available_seats, total_students)  
         
-        case 3: #Enroll a student in a course
+        case 3: #Enroll a student in a course                                               # <<<< case 3 incomplete, to be fixed
             student_ID = input("Please enter your student ID: ")
             course_ID = input("Please input the course ID you want to enrol in: ").upper()
 
@@ -121,10 +121,13 @@ while True:
             
         case 5: # View courses available and space left
             print("me")
+
         case 6: # View all students and information
             print("me")
+
         case 7:
             break
+
         case _:
             print("Invalid Choice. Try Again")
         
