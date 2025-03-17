@@ -120,7 +120,8 @@ while True:
             print("You have successfully dropped the course")
             
         case 5: # View courses available and space left
-            print("me")
+            with open("courses.txt", "r") as COURSES_INFO:
+                print(COURSES_INFO.read())
 
         case 6: # View all students and information
             print("me")
