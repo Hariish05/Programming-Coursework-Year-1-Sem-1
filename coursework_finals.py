@@ -31,33 +31,42 @@ def adding_new_course(course_ID, course_name, available_seats):
 
 # COURSE ENROLLMENT CODE 
 def course_enrollment(student_ID, course_ID):
-    '''FUNCTION:    To allow student to enroll in a course using their student ID, and course ID they want to enroll in. Also displays the enrolment date'''                    
+  '''FUNCTION:    To allow student to enroll in a course using their student ID, and course ID they want to enroll in. Also displays the enrolment date'''                    
     dateToday = datetime.datetime.now()
-    
-    # reading courses available
     student_enrolled = False
-    # with open("enrollment.txt", "w") as ENROLLMENT_INFO:
-    #     enrollment_lines = ENROLLMENT_INFO.readlines()
+    
+    # Read available courses
+    enrolled = False
+    with open("courses.txt", "r") as COURSES_INFO:
+        lines = COURSES_INFO.readlines()
+
+    with open("courses.txt", "w") as COURSES_INFO:
+        for line in lines:
+            if course_ID in line:
+                parts = line.strip().split(", ")        # splits each line into 3 parts (separated by ",") = so like a list with 3 indexes > ["courseID info", "courseName", "seatInfo"]
+                available_seats = int(parts[2].split(": ")[1])      # in part[2] (third index: seatInfo) = splits into two smaller parts (separated by ":") and defines available_seats as the integer in the 2nd index (smallerPart[1])
+
+                if available_seats > 0:        # if there is still seats available, -1 off the total available seats and add student and course info into enrollment.txt
+                    available_seats -= 1
+                    enrolled = True
+                    print(f"Enrolling student {student_ID} in course {course_ID}")
+                    with open("enrollment.txt", "a") as ENROLLMENT_INFO:        
+                        ENROLLMENT_INFO.write(f"Student ID: {student_ID}, Course ID: {course_ID}, Enrollment Date: {dateToday.strftime("%d %B %Y")}\n")
+                else:
+                    print("Course is full. Enrollment failed.")
+
+                line = f"Course ID: {course_ID}, Course Name: {parts[1].split(': ')[1]}, Available Seats: {available_seats}\n"
+                
+            COURSES_INFO.write(line)      # this is to update course_info with the new updated available_seat total
+
+    if not enrolled:        # if courseID is wrong/non-existent display error message
+        print("Course not found.")
+
 
     with open("enrollment.txt", "a") as ENROLLMENT_INFO:
         ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
         ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
         ENROLLMENT_INFO.write(f"Enrollment Date: {dateToday.strftime("%d %B %Y")} \n")  # date format: dateNumber monthName year
-        
-    
-    
-    # with open("enrollment.txt","r") as ENROLLMENT_INFO:         
-    #     print(ENROLLMENT_INFO.read())
-    
-'''ORIGINAL CODE (Doesn't really work because of line 48-51 -- variable (technically) doesnt exist in the courses.txt file) >>>
-    with open("courses.txt", "r") as ENROLLMENT_INFO:           # AAUGHHHHH ITS NOT WORKING
-         #if total_students < available_seats:                   # there is probably a better method for this but i cant think of it rn
-                #course_enrollment(student_ID, course_ID)        # What im trying to do: Check whether total_students is less than than available_seats (whether there's still availability in course)
-        total_students += 1                                                #   , if yes got space then add student info and course info (and date) into enrolment.txt file                      
-    with open("courses.txt", "a") as ENROLLMENT_INFO:                      #, and total_students counter + 1 / available_seats - 1
-        ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
-        ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
-        ENROLLMENT_INFO.write(f"Enrollment Date: {dateToday.strftime("%d %B %Y")} \n")  # date format: dateNumber monthName year'''
 
 # CODE TO DROP COURSE
 def course_drop(student_ID, course_ID):
@@ -116,18 +125,19 @@ while True:
             student_name = input("Please enter your name: ")
             student_contact = int(input("Please enter your phone number: "))
 
-            print("New student added.")
+            print("\nNew student added:")
+            print(f"Student ID: {student_ID}, Student Name: {student_name}")
             adding_new_student(student_ID, student_name,student_contact)
 
         case 2: # To make a new course
             course_ID = input("Please input the course ID: ").upper() # not int(input()) cause course can be acronym
             course_name = input("Please input course name: ")
-            available_seats = int(input("Please input available seats for the course: "))
+            available_seats = int(input("Please input seats available for the course: "))       # ADD error-handling for this part
 
-            print("New course added >>")
-            print(f"New Course: {course_ID}, Course Name: {course_name}, Total Available Seats: {available_seats}")   
+            print("\nNew course added: ")
+            print(f"Course ID: {course_ID}, Course Name: {course_name}, Available Seats: {available_seats}")   
             adding_new_course(course_ID, course_name, available_seats)  
-        
+     
         case 3: # Enroll a student in a course
             student_ID = input("Please enter your student ID: ")                        
             course_ID = input("Please input the course ID you want to enrol in: ").upper()
@@ -143,11 +153,11 @@ while True:
             
         case 5: # View courses available and space left
             with open("courses.txt", "r") as COURSES_INFO:
-                print(f"\n{COURSES_INFO.read()}")
+                print(f"\n{COURSES_INFO.read()}\n")
             
         case 6: # View all students and information
             with open("students.txt", "r") as STUDENT_INFO:
-                print(f"\n{STUDENT_INFO.read()}")
+                print(f"\n{STUDENT_INFO.read()}\n")
 
         case 7:
             break
