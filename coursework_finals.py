@@ -1,5 +1,4 @@
-import os.path
-import pathlib
+import os
 import datetime
 
 STUDENTS_INFO = "students.txt"
@@ -130,10 +129,10 @@ while True:
                     if len(str(student_ID)) <= 8: #len cannot be int() so its converted to str()
                         break
                     else:
-                        print("Enter a proper student ID (e.g. 23132426): ")
+                        print("Ensure your student ID is less than 8 digits (e.g. 23132426): ")
 
                 except ValueError:
-                    print("Error: enter a proper student ID")
+                    print("Error! Enter a proper student ID")
             
             student_name = input("Please enter your name (e.g John Doe): ")
             
@@ -144,12 +143,21 @@ while True:
                     break
                 except ValueError:
                     print("Error: enter a proper phone number! ")
-
-
+                    
             adding_new_student(student_ID, student_name,student_contact)
 
-            print(f"New student added! Student ID: {student_ID}, Student Name: {student_name}, Contact Number: {student_contact}")
-
+            print(f"\nNew student added! Student ID: {student_ID}, Student Name: {student_name}, Contact Number: {student_contact}\n")
+            
+            while True:
+                try:
+                    userInput = input("Do you want to see the list of students? (Y/N): ").upper()
+                    if userInput == "Y":
+                        with open("students.txt", "r") as STUDENT_INFO:
+                            print(STUDENT_INFO.read())
+                            break
+                except:
+                    print("ERROR! Enter a valid input please. ")
+                    
         case 2: # To make a new course
             
             # To prevent the user from inputting the wrong courseid format
@@ -172,28 +180,90 @@ while True:
             adding_new_course(course_ID, course_name, available_seats)  
 
             print(f"New course added! Course ID: {course_ID}, Course Name: {course_name}, Available Seats: {available_seats}")
+            
+            while True:
+                try:
+                    userInput = input("Do you want to see the list of courses? (Y/N): ").upper()
+                    if userInput == "Y":
+                        with open("courses.txt", "r") as COURSES_INFO:
+                            print(COURSES_INFO.read())
+                            break
+                except:
+                    print("ERROR! Enter a valid input please. ")
      
         case 3: # Enroll a student in a course
             # Display courses available 
-            student_ID = input("Please enter your student ID (e.g 23132426): ")                        
-            course_ID = input("Please input the course ID you want to enrol in (e.g. CSC1024): ").upper()
+            while True:
+                student_ID = input("Please enter your student ID (e.g. 23132426): ") #converted to int later or else the try catch wouldnt work
+
+                try:
+                    student_ID = int(student_ID) 
+                    if len(str(student_ID)) <= 8: #len cannot be int() so its converted to str()
+                        break
+                    else:
+                        print("Enter a proper student ID (e.g. 23132426): ")
+
+                except ValueError:
+                    print("Error! enter a proper student ID")
+                                                
+            while True:
+                course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
+                if len(course_ID) <= 10:
+                    break
+                else:
+                    print("Enter a proper course ID: ") # Can't be int() because have initials of courses at the start
            
             course_enrollment(student_ID, course_ID)
             
             print(f"New student enrolled! Student ID: {student_ID}, Course ID: {course_ID}")
+            
+            while True:
+                try:
+                    userInput = input("Do you want to see the list of enrolled students? (Y/N): ").upper()
+                    if userInput == "Y":
+                        with open("enrollment.txt", "r") as ENROLLMENT_INFO:
+                            print(ENROLLMENT_INFO.read())
+                            break
+                except:
+                    print("ERROR! Enter a valid input please. ")
 
         case 4: # Drop a course
-            student_ID = input("Please enter the student ID: ")
-            course_ID = input("Please enter the course ID: ").upper()
+            
+            while True:
+                student_ID = input("Please enter your student ID (e.g. 23132426): ") #converted to int later or else the try catch wouldnt work
+
+                try:
+                    student_ID = int(student_ID) 
+                    if len(str(student_ID)) <= 8: #len cannot be int() so its converted to str()
+                        break
+                    else:
+                        print("Enter a proper student ID (e.g. 23132426): ")
+
+                except ValueError:
+                    print("Error! enter a proper student ID")
+                    
+            while True:
+                course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
+                if len(course_ID) <= 10:
+                    break
+                else:
+                    print("Enter a proper course ID: ")
+            
             course_drop(student_ID,course_ID)
   
         case 5: # View courses available and space left
-            with open("courses.txt", "r") as COURSES_INFO:
-                print(f"\n{COURSES_INFO.read()}\n")
+            if os.path.exist("courses.txt"):
+                with open("courses.txt", "r") as COURSES_INFO:
+                    print(f"\n{COURSES_INFO.read()}\n")
+            else:
+                print("Error! File not found. ")
             
         case 6: # View all students and information
-            with open("students.txt", "r") as STUDENT_INFO:
-                print(f"\n{STUDENT_INFO.read()}\n")
+            if os.path.exist("students.txt"):
+                with open("students.txt", "r") as STUDENT_INFO:
+                    print(f"\n{STUDENT_INFO.read()}\n")
+            else:
+                print("Error! File not found. ")
 
         case 7:
             break
