@@ -3,4 +3,9 @@ Course ID: CSC1030, Course Name: Data Structures, Available Seats: 40
 Course ID: CSC1055, Course Name: Machine Learning, Available Seats: 35
 Course ID: CSC2010, Course Name: Operating Systems, Available Seats: 30
 Course ID: CSC2032, Course Name: Computer Networks, Available Seats: 25
-Course ID: CSC3015, Course Name: Cybersecurity, Available Seats: 20
+Course ID: CSC3015, Course Name: Cybersecurity, Avaliable Seats: 21
+Course ID: QWE, Course Name: qwe, Available Seats: 20
+Course ID: 123123123, Course Name: 12313, Available Seats: 1
+Course ID: 3123213, Course Name: qweqwe, Available Seats: 2
+Course ID: QWEQWEQE, Course Name: qweqe, Available Seats: 2
+Course ID: CSC23, Course Name: sdad, Available Seats: 3
