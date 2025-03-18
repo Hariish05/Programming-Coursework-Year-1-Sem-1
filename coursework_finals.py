@@ -123,10 +123,10 @@ while True:
 
             # To prevent the user from inputting the wrong student id format
             while True:
-                student_ID = input("Please enter your student ID (e.g. 23132426): ")
+                student_ID = input("Please enter your student ID (e.g. 23132426): ") #converted to int later or else the try catch wouldnt work
 
                 try:
-                    student_ID = int(student_ID)
+                    student_ID = int(student_ID) 
                     if len(str(student_ID)) <= 8: #len cannot be int() so its converted to str()
                         break
                     else:
