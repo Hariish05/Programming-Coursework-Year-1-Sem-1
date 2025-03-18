@@ -71,26 +71,25 @@ def course_drop(student_ID, course_ID):
     with open("enrollment.txt", "w") as ENROLLMENT_INFO:
         for records in record_line: 
             if student_ID in records and course_ID in records: #if studentid and courseid in records, it deletes it, if not it skips and re-write record
+                student_removed = True
                 continue
             ENROLLMENT_INFO.write(records)
     
     if student_removed:
-        print(f"Student {student_ID} was dropped from {course_ID}. seat availability is being updated. ")
+        print(f"Student {student_ID} was dropped from {course_ID}. Seat availability is being updated. ")
         
         with open("courses.txt", "r") as COURSES_INFO:
             course_lines = COURSES_INFO.readlines()
             
         with open("courses.txt", "w") as COURSES_INFO:
             for element in course_lines:
-                if course_ID in course_lines:
-                    element_parts = element.strip().split(": ") # breaks course_lines info ["element 1: ", "element 2: ", "element 3: "]
-                    available_seats = int(element_parts[2].split(": ")[1]) - 1 # calls index 2 and splits ["element 3: "] into ["element 3: ", "(data)"]. turns index 1 into an int and -1 since student dropped course
+                if course_ID in element:
+                    element_parts = element.strip().split(", ") # breaks course_lines info ["element 1: ", "element 2: ", "element 3: "]
+                    available_seats = int(element_parts[2].split(": ")[1]) + 1 # calls index 2 and splits ["element 3: "] into ["element 3: ", "(data)"]. turns index 1 into an int and +1 since student dropped course
                     element = f"Course ID: {course_ID}, {element_parts[1]}, Avaliable Seats: {available_seats}\n"
                 COURSES_INFO.write(element)
-            else:
-                print("Enrollment record not found")
-
-
+    else:
+        print("Enrollment record not found")
 
 
 # ASKING USER RESPONSE CODE
@@ -136,7 +135,7 @@ while True:
             course_enrollment(student_ID, course_ID)
             
         case 4: # Drop a course
-            student_ID = input("Please enter the student ID:")
+            student_ID = input("Please enter the student ID: ")
             course_ID = input("Please enter the course ID: ").upper()
 
             course_drop(student_ID,course_ID)
