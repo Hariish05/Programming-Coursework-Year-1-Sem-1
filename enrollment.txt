@@ -1,6 +1,5 @@
-Student ID: 2313, Course ID: CSC1024, Enrollment Date: 16 March 2025
-Student ID: 2315, Course ID: CSC1024, Enrollment Date: 16 March 2025
-Student ID: 2316, Course ID: CSC1024, Enrollment Date: 16 March 2025
-Student ID: 2310, Course ID: CSC1024, Enrollment Date: 16 March 2025
-Student ID: 2313, Course ID: CSC1024, Enrollment Date: 16 March 2025
-Student ID: 12413451235325231532523Course ID: CSC1024Enrolment Date: 17 March 2025 
+Student ID: 23132426, Course ID: CSC1024, Enrollment Date: 18 March 2025
+Student ID: 23132427, Course ID: CSC1030, Enrollment Date: 10 December 2030
+Student ID: 23132428, Course ID: CSC1055, Enrollment Date: 12 March 2025
+Student ID: 23132429, Course ID: CSC2010, Enrollment Date: 18 April 2025
+Student ID: 23132430, Course ID: CSC2032, Enrollment Date: 5 March 2025
