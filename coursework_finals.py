@@ -36,9 +36,15 @@ def adding_new_course(course_ID, course_name, available_seats, total_students):
 def course_enrollment(student_ID, course_ID):
     '''FUNCTION:    To allow student to enroll in a course using their student ID, and course ID they want to enroll in
                     Also displays the enrolment date'''
-                                                                                                        # either i forgo the total_students and just enroll student in regardless   
+                                                                                                        # worst case plan: i forgo the total_students,etc. and just enroll student in regardless   
     dateToday = datetime.datetime.now()
 
+    with open("courses.txt", "a") as ENROLLMENT_INFO:                      #, and total_students counter + 1 / available_seats - 1
+        ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
+        ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
+        ENROLLMENT_INFO.write(f"Enrollment Date: {dateToday.strftime("%d %B %Y")} \n")  # date format: dateNumber monthName year
+
+''' ORIGINAL CODE (Doesn't really work because of line 48-51 -- variable (technically) doesnt exist in the courses.txt file) >>>
     with open("courses.txt", "r") as ENROLLMENT_INFO:           # AAUGHHHHH ITS NOT WORKING
          #if total_students < available_seats:                   # there is probably a better method for this but i cant think of it rn
                 #course_enrollment(student_ID, course_ID)        # What im trying to do: Check whether total_students is less than than available_seats (whether there's still availability in course)
@@ -50,7 +56,7 @@ def course_enrollment(student_ID, course_ID):
 
     with open("enrollment.txt","r") as ENROLLMENT_INFO:         # these two lines for testing purposes, show enrollment info
         print(ENROLLMENT_INFO.read())
-
+'''
 
 # CODE TO DROP COURSE
 def course_drop(student_ID, course_ID):
@@ -87,7 +93,7 @@ while True:
 
     # replace all print statements with a function class from either student code, courses code or enrollment code
     match userInput:
-        case 1: #adding new student
+        case 1: # Adding new student
             student_ID = input("Please enter your student ID: ") # not an int(input()) because the student ID could contain Letters for different departments
             student_name = input("Please enter your name: ")
             student_contact = int(input("Please enter your phone number: "))
@@ -95,7 +101,7 @@ while True:
             print("New student added.")
             adding_new_student(student_ID, student_name,student_contact)
 
-        case 2: #to make a new course
+        case 2: # To make a new course
             course_ID = input("Please input the course ID: ").upper() # not int(input()) cause course can be acronym
             course_name = input("Please input course name: ")
             available_seats = int(input("Please input available seats for the course: "))
@@ -105,7 +111,7 @@ while True:
             print(f"New Course: {course_ID}, Course Name: {course_name}, Total Available Seats: {available_seats}")   
             adding_new_course(course_ID, course_name, available_seats, total_students)  
         
-        case 3: #Enroll a student in a course                                               # <<<< case 3 incomplete, to be fixed. Maybe also show all the courses before prompting for courseID
+        case 3: # Enroll a student in a course                                               # <<<< case 3 incomplete, to be fixed. Maybe also show all the courses before prompting for courseID
             student_ID = input("Please enter your student ID: ")                        
             course_ID = input("Please input the course ID you want to enrol in: ").upper()
 
