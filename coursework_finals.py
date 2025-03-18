@@ -1,4 +1,3 @@
-
 import os.path
 import pathlib
 import datetime
@@ -26,14 +25,14 @@ def adding_new_course(course_ID, course_name, available_seats):
         COURSES_INFO.write(f"Course Name: {course_name}, ")
         COURSES_INFO.write(f"Available Seats: {available_seats}\n")
         
-    # with open("courses.txt", "r") as COURSES_INFO:        # shows the courses, for testing purposes
-    #     print(COURSES_INFO.read())
+    with open("courses.txt", "r") as COURSES_INFO:
+        print(COURSES_INFO.read())
 
 # COURSE ENROLLMENT CODE 
 def course_enrollment(student_ID, course_ID):
-  '''FUNCTION:    To allow student to enroll in a course using their student ID, and course ID they want to enroll in. Also displays the enrolment date'''                    
+    '''FUNCTION:    To allow student to enroll in a course using their student ID, and course ID they want to enroll in. Also displays the enrolment date'''
     dateToday = datetime.datetime.now()
-    student_enrolled = False
+    enrolled = False
     
     # Read available courses
     enrolled = False
@@ -61,7 +60,6 @@ def course_enrollment(student_ID, course_ID):
 
     if not enrolled:        # if courseID is wrong/non-existent display error message
         print("Course not found.")
-
 
     with open("enrollment.txt", "a") as ENROLLMENT_INFO:
         ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
@@ -100,7 +98,6 @@ def course_drop(student_ID, course_ID):
     else:
         print("Enrollment record not found")
 
-
 # ASKING USER RESPONSE CODE
 while True:
 
@@ -121,34 +118,38 @@ while True:
 
     match userInput:
         case 1: # Adding new student
-            student_ID = input("Please enter your student ID: ") # not an int(input()) because the student ID could contain Letters for different departments
-            student_name = input("Please enter your name: ")
-            student_contact = int(input("Please enter your phone number: "))
+            student_ID = input("Please enter your student ID (e.g. 23132426): ") # not an int(input()) because the student ID could contain Letters for different departments
+            student_name = input("Please enter your name (e.g John Doe): ")
+            student_contact = int(input("Please enter your phone number (e.g. 016-123-4567): "))
 
-            print("\nNew student added:")
-            print(f"Student ID: {student_ID}, Student Name: {student_name}")
             adding_new_student(student_ID, student_name,student_contact)
 
-        case 2: # To make a new course
-            course_ID = input("Please input the course ID: ").upper() # not int(input()) cause course can be acronym
-            course_name = input("Please input course name: ")
-            available_seats = int(input("Please input seats available for the course: "))       # ADD error-handling for this part
+            print(f"New student added! Student ID: {student_ID}, Student Name: {student_name}, Contact Number: {student_contact}")
 
-            print("\nNew course added: ")
-            print(f"Course ID: {course_ID}, Course Name: {course_name}, Available Seats: {available_seats}")   
+        case 2: # To make a new course
+            course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
+            course_name = input("Please input course name (e.g. Programming Principles): ")
+            available_seats = int(input("Please input seats available for the course (e.g. 30): "))       # ADD error-handling for this part
+
             adding_new_course(course_ID, course_name, available_seats)  
+
+            print(f"New course added! Course ID: {course_ID}, Course Name: {course_name}, Available Seats: {available_seats}")
      
         case 3: # Enroll a student in a course
-            student_ID = input("Please enter your student ID: ")                        
-            course_ID = input("Please input the course ID you want to enrol in: ").upper()
+            # Display courses available 
+            student_ID = input("Please enter your student ID (e.g 23132426): ")                        
+            course_ID = input("Please input the course ID you want to enrol in (e.g. CSC1024): ").upper()
            
             course_enrollment(student_ID, course_ID)
             
+            print(f"New student enrolled! Student ID: {student_ID}, Course ID: {course_ID}")
+
         case 4: # Drop a course
             student_ID = input("Please enter the student ID: ")
             course_ID = input("Please enter the course ID: ").upper()
 
             course_drop(student_ID,course_ID)
+            
             print("You have successfully dropped the course")
             
         case 5: # View courses available and space left
