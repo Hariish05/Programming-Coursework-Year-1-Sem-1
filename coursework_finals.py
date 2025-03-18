@@ -120,6 +120,7 @@ while True:
         case 1: # Adding new student
             student_ID = input("Please enter your student ID (e.g. 23132426): ") # not an int(input()) because the student ID could contain Letters for different departments
             student_name = input("Please enter your name (e.g John Doe): ")
+#a
             student_contact = int(input("Please enter your phone number (e.g. 016-123-4567): "))
 
             adding_new_student(student_ID, student_name,student_contact)
@@ -129,6 +130,7 @@ while True:
         case 2: # To make a new course
             course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
             course_name = input("Please input course name (e.g. Programming Principles): ")
+
             available_seats = int(input("Please input seats available for the course (e.g. 30): "))       # ADD error-handling for this part
 
             adding_new_course(course_ID, course_name, available_seats)  
