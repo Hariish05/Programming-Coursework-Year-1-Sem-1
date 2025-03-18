@@ -26,5 +26,6 @@ dateToday = datetime.datetime.now()
 print(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")'''
 
 with open("courses.txt", "r") as ENROLLMENT_INFO:
-    ENROLLMENT_INFO.readline(-1)
+    ENROLLMENT_INFO.readlines(-1)
+    
 

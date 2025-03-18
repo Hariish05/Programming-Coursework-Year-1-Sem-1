@@ -36,17 +36,17 @@ def adding_new_course(course_ID, course_name, available_seats, total_students):
 def course_enrollment(student_ID, course_ID):
     '''FUNCTION:    To allow student to enroll in a course using their student ID, and course ID they want to enroll in
                     Also displays the enrolment date'''
-    
+                                                                                                        # either i forgo the total_students and just enroll student in regardless   
     dateToday = datetime.datetime.now()
 
     with open("courses.txt", "r") as ENROLLMENT_INFO:           # AAUGHHHHH ITS NOT WORKING
-         if total_students < available_seats:                   # there is probably a better method for this but i cant think of it rn
-                course_enrollment(student_ID, course_ID)        # What im trying to do: Check whether total_students is less than than available_seats (whether there's still availability in course)
-                total_students += 1                             #                       , if yes got space then add student info and course info (and date) into enrolment.txt file                      
-                with open("courses.txt", "a") as ENROLLMENT_INFO:                      #, and total_students counter + 1 / available_seats - 1
-                    ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
-                    ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
-                    ENROLLMENT_INFO.write(f"Enrollment Date: {dateToday.strftime("%d %B %Y")} \n")  # date format: dateNumber monthName year
+         #if total_students < available_seats:                   # there is probably a better method for this but i cant think of it rn
+                #course_enrollment(student_ID, course_ID)        # What im trying to do: Check whether total_students is less than than available_seats (whether there's still availability in course)
+        total_students += 1                             #                       , if yes got space then add student info and course info (and date) into enrolment.txt file                      
+    with open("courses.txt", "a") as ENROLLMENT_INFO:                      #, and total_students counter + 1 / available_seats - 1
+        ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
+        ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
+        ENROLLMENT_INFO.write(f"Enrollment Date: {dateToday.strftime("%d %B %Y")} \n")  # date format: dateNumber monthName year
 
     with open("enrollment.txt","r") as ENROLLMENT_INFO:         # these two lines for testing purposes, show enrollment info
         print(ENROLLMENT_INFO.read())
@@ -105,8 +105,8 @@ while True:
             print(f"New Course: {course_ID}, Course Name: {course_name}, Total Available Seats: {available_seats}")   
             adding_new_course(course_ID, course_name, available_seats, total_students)  
         
-        case 3: #Enroll a student in a course                                               # <<<< case 3 incomplete, to be fixed
-            student_ID = input("Please enter your student ID: ")
+        case 3: #Enroll a student in a course                                               # <<<< case 3 incomplete, to be fixed. Maybe also show all the courses before prompting for courseID
+            student_ID = input("Please enter your student ID: ")                        
             course_ID = input("Please input the course ID you want to enrol in: ").upper()
 
             course_enrollment(student_ID, course_ID)
