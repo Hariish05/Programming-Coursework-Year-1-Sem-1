@@ -96,7 +96,7 @@ def course_drop(student_ID, course_ID):
                     element = f"Course ID: {course_ID}, {element_parts[1]}, Avaliable Seats: {available_seats}\n"
                 COURSES_INFO.write(element)
         print("You have successfully dropped the course")
-        
+
     else:
         print("Enrollment record not found")
 
@@ -120,7 +120,21 @@ while True:
 
     match userInput:
         case 1: # Adding new student
-            student_ID = input("Please enter your student ID (e.g. 23132426): ") # not an int(input()) because the student ID could contain Letters for different departments
+
+            # To prevent the user from inputting the wrong student id format
+            while True:
+                student_ID = input("Please enter your student ID (e.g. 23132426): ")
+
+                try:
+                    student_ID = int(student_ID)
+                    if len(str(student_ID)) <= 8: #len cannot be int() so its converted to str()
+                        break
+                    else:
+                        print("Enter a proper student ID (e.g. 23132426): ")
+
+                except ValueError:
+                    print("Error: enter a proper student ID")
+            
             student_name = input("Please enter your name (e.g John Doe): ")
             
             #So if the student_contact is in int() the only format possible is "0161234567"
@@ -137,7 +151,15 @@ while True:
             print(f"New student added! Student ID: {student_ID}, Student Name: {student_name}, Contact Number: {student_contact}")
 
         case 2: # To make a new course
-            course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
+            
+            # To prevent the user from inputting the wrong courseid format
+            while True:
+                course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
+                if len(course_ID) <= 10:
+                    break
+                else:
+                    print("Enter a proper course ID: ")   
+
             course_name = input("Please input course name (e.g. Programming Principles): ")
 
             while True:
