@@ -119,7 +119,7 @@ while True:
             print(f"Course ID: {course_ID}, Course Name: {course_name}, Available Seats: {available_seats}")   
             adding_new_course(course_ID, course_name, available_seats)  
         
-        case 3: # Enroll a student in a course                      
+        case 3: # Enroll a student in a course                       # << incomplete, to be fixed. Maybe also show all the courses before prompting for courseID
             student_ID = input("Please enter your student ID: ")                        
             course_ID = input("Please input the course ID you want to enrol in: ").upper()
 
