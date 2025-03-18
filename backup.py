@@ -1,4 +1,3 @@
-
 import os.path
 import pathlib
 import datetime
@@ -146,5 +145,3 @@ while True:
 
         case _:
             print("Invalid Choice. Try Again")
-        
-        
