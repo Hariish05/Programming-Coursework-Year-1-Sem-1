@@ -25,9 +25,6 @@ def adding_new_course(course_ID, course_name, available_seats):
         COURSES_INFO.write(f"Course ID: {course_ID}, ")
         COURSES_INFO.write(f"Course Name: {course_name}, ")
         COURSES_INFO.write(f"Available Seats: {available_seats}\n")
-        
-    # with open("courses.txt", "r") as COURSES_INFO:        # shows the courses, for testing purposes
-    #     print(COURSES_INFO.read())
 
 
 # COURSE ENROLLMENT CODE 
