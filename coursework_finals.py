@@ -95,6 +95,8 @@ def course_drop(student_ID, course_ID):
                     available_seats = int(element_parts[2].split(": ")[1]) + 1 # calls index 2 and splits ["element 3: "] into ["element 3: ", "(data)"]. turns index 1 into an int and +1 since student dropped course
                     element = f"Course ID: {course_ID}, {element_parts[1]}, Avaliable Seats: {available_seats}\n"
                 COURSES_INFO.write(element)
+        print("You have successfully dropped the course")
+        
     else:
         print("Enrollment record not found")
 
@@ -120,8 +122,15 @@ while True:
         case 1: # Adding new student
             student_ID = input("Please enter your student ID (e.g. 23132426): ") # not an int(input()) because the student ID could contain Letters for different departments
             student_name = input("Please enter your name (e.g John Doe): ")
-#a
-            student_contact = int(input("Please enter your phone number (e.g. 016-123-4567): "))
+            
+            #So if the student_contact is in int() the only format possible is "0161234567"
+            while True:
+                try:
+                    student_contact = int(input("Please enter your phone number (e.g. 0161234567): "))
+                    break
+                except ValueError:
+                    print("Error: enter a proper phone number! ")
+
 
             adding_new_student(student_ID, student_name,student_contact)
 
@@ -131,7 +140,12 @@ while True:
             course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
             course_name = input("Please input course name (e.g. Programming Principles): ")
 
-            available_seats = int(input("Please input seats available for the course (e.g. 30): "))       # ADD error-handling for this part
+            while True:
+                try:
+                    available_seats = int(input("Please input seats available for the course (e.g. 30): ")) 
+                    break      
+                except ValueError:
+                    print("Error: enter a proper number! ")
 
             adding_new_course(course_ID, course_name, available_seats)  
 
@@ -149,11 +163,8 @@ while True:
         case 4: # Drop a course
             student_ID = input("Please enter the student ID: ")
             course_ID = input("Please enter the course ID: ").upper()
-
             course_drop(student_ID,course_ID)
-            
-            print("You have successfully dropped the course")
-            
+  
         case 5: # View courses available and space left
             with open("courses.txt", "r") as COURSES_INFO:
                 print(f"\n{COURSES_INFO.read()}\n")
