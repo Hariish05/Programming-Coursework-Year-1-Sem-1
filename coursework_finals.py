@@ -26,9 +26,6 @@ def adding_new_course(course_ID, course_name, available_seats):
         COURSES_INFO.write(f"Course ID: {course_ID}, ")
         COURSES_INFO.write(f"Course Name: {course_name}, ")
         COURSES_INFO.write(f"Available Seats: {available_seats}\n")
-        
-    # with open("courses.txt", "r") as COURSES_INFO:        # shows the courses, for testing purposes
-    #     print(COURSES_INFO.read())
 
 
 # COURSE ENROLLMENT CODE 
@@ -119,7 +116,8 @@ while True:
             print(f"Course ID: {course_ID}, Course Name: {course_name}, Available Seats: {available_seats}")   
             adding_new_course(course_ID, course_name, available_seats)  
         
-        case 3: # Enroll a student in a course                      
+        case 3: # Enroll a student in a course   
+            # display courses available                   
             student_ID = input("Please enter your student ID: ")                        
             course_ID = input("Please input the course ID you want to enrol in: ").upper()
 
