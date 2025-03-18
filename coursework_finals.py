@@ -32,7 +32,7 @@ def adding_new_course(course_ID, course_name, available_seats, total_students):
     #     print(COURSES_INFO.read())
 
 
-# ENROLLMENT CODE 
+# COURSE ENROLLMENT CODE 
 def course_enrollment(student_ID, course_ID):
     '''FUNCTION:    To allow student to enroll in a course using their student ID, and course ID they want to enroll in
                     Also displays the enrolment date'''
@@ -40,14 +40,13 @@ def course_enrollment(student_ID, course_ID):
     dateToday = datetime.datetime.now()
 
     with open("courses.txt", "r") as ENROLLMENT_INFO:           # AAUGHHHHH ITS NOT WORKING
-         total_students = int(COURSES_INFO.readline())          # this is line to be removed >>> readline() cant read last character in string (only first few characters)
          if total_students < available_seats:                   # there is probably a better method for this but i cant think of it rn
                 course_enrollment(student_ID, course_ID)        # What im trying to do: Check whether total_students is less than than available_seats (whether there's still availability in course)
                 total_students += 1                             #                       , if yes got space then add student info and course info (and date) into enrolment.txt file                      
                 with open("courses.txt", "a") as ENROLLMENT_INFO:                      #, and total_students counter + 1 / available_seats - 1
                     ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
                     ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
-                    ENROLLMENT_INFO.write(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")  # date format: dateNumber monthName year
+                    ENROLLMENT_INFO.write(f"Enrollment Date: {dateToday.strftime("%d %B %Y")} \n")  # date format: dateNumber monthName year
 
     with open("enrollment.txt","r") as ENROLLMENT_INFO:         # these two lines for testing purposes, show enrollment info
         print(ENROLLMENT_INFO.read())

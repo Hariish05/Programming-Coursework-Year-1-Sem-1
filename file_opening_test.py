@@ -18,10 +18,13 @@ else:
 
 # with open("tempfile.txt", "r") as f:
 #     print(f.read())
-'''
+
 import datetime
 
 dateToday = datetime.datetime.now()
 
-print(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")
+print(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")'''
+
+with open("courses.txt", "r") as ENROLLMENT_INFO:
+    ENROLLMENT_INFO.readline(-1)
 
