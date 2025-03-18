@@ -25,7 +25,17 @@ dateToday = datetime.datetime.now()
 
 print(f"Enrolment Date: {dateToday.strftime("%d %B %Y")} \n")'''
 
-with open("courses.txt", "r") as ENROLLMENT_INFO:
-    ENROLLMENT_INFO.readlines(-1)
+
+
+seats = []  # 1 = occupied, 0 = available
+count = 0
+total_students = 0
+for count in range(200):
+    seats.append("0")
+    count+= 1
+
+available_seats = seats.count("0")
+print(available_seats)
     
+if total_students < available_seats:
 

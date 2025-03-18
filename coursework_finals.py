@@ -42,7 +42,7 @@ def course_enrollment(student_ID, course_ID):
     with open("courses.txt", "r") as ENROLLMENT_INFO:           # AAUGHHHHH ITS NOT WORKING
          #if total_students < available_seats:                   # there is probably a better method for this but i cant think of it rn
                 #course_enrollment(student_ID, course_ID)        # What im trying to do: Check whether total_students is less than than available_seats (whether there's still availability in course)
-        total_students += 1                             #                       , if yes got space then add student info and course info (and date) into enrolment.txt file                      
+        total_students += 1                                                #   , if yes got space then add student info and course info (and date) into enrolment.txt file                      
     with open("courses.txt", "a") as ENROLLMENT_INFO:                      #, and total_students counter + 1 / available_seats - 1
         ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
         ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
