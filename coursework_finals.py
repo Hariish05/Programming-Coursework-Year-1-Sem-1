@@ -16,8 +16,7 @@ def adding_new_student(student_ID, student_name, student_contact):
 
 # COURSES CODE
 def adding_new_course(course_ID, course_name, available_seats):
-    ''' Function:   To allow new courses to be added with their course ID, course name and available seats for the course
-                    Also clearly displays the courses and their information '''
+    ''' Function: To allow new courses to be added with their course ID, course name and available seats for the course. Also clearly displays the courses and their information '''
 
     with open("courses.txt", "a") as COURSES_INFO: # writes the courses name in the textfile
         COURSES_INFO.write(f"Course ID: {course_ID}, ")
@@ -26,17 +25,20 @@ def adding_new_course(course_ID, course_name, available_seats):
 
 # COURSE ENROLLMENT CODE 
 def course_enrollment(student_ID, course_ID):
-    '''FUNCTION:    To allow student to enroll in a course using their student ID, and course ID they want to enroll in. Also displays the enrolment date'''
+    '''FUNCTION: To allow student to enroll in a course using their student ID, and course ID they want to enroll in. Also displays the enrolment date'''
+    
     dateToday = datetime.datetime.now()
         
     # Read available courses
     enrolled = False
+    course_exist = False
     with open("courses.txt", "r") as COURSES_INFO:
         lines = COURSES_INFO.readlines()
 
     with open("courses.txt", "w") as COURSES_INFO:
         for line in lines:
             if course_ID in line:
+                course_exist = True
                 parts = line.strip().split(", ")        # splits each line into 3 parts (separated by ",") = so like a list with 3 indexes > ["courseID info", "courseName", "seatInfo"]
                 available_seats = int(parts[2].split(": ")[1])      # in part[2] (third index: seatInfo) = splits into two smaller parts (separated by ":") and defines available_seats as the integer in the 2nd index (smallerPart[1])
 
@@ -44,20 +46,10 @@ def course_enrollment(student_ID, course_ID):
                     available_seats -= 1
                     enrolled = True
                     print(f"Enrolling student {student_ID} in course {course_ID}")
+                    
                     with open("enrollment.txt", "a") as ENROLLMENT_INFO:        
                         ENROLLMENT_INFO.write(f"Student ID: {student_ID}, Course ID: {course_ID}, Enrollment Date: {dateToday.strftime("%d %B %Y")}\n")
                     print(f"\nNew student enrolled! Student ID: {student_ID}, Course ID: {course_ID}\n")
-                    while True:
-                        try:
-                            userInput = input("Do you want to see the list of enrolled students? (Y/N): ").upper()
-                            if userInput == "Y":
-                                with open("enrollment.txt", "r") as ENROLLMENT_INFO:
-                                    print(ENROLLMENT_INFO.read())
-                                    break
-                            elif userInput == "N":
-                                break
-                        except:
-                            print("ERROR! Enter a valid input please. ")
                 else:
                     print("Course is full. Enrollment failed.")
 
@@ -65,14 +57,15 @@ def course_enrollment(student_ID, course_ID):
                 
             COURSES_INFO.write(line)      # this is to update course_info with the new updated available_seat total
 
-    with open("enrollment.txt", "a") as ENROLLMENT_INFO:
-        ENROLLMENT_INFO.write(f"Student ID: {student_ID}, ")
-        ENROLLMENT_INFO.write(f"Course ID: {course_ID}, ")
-        ENROLLMENT_INFO.write(f"Enrollment Date: {dateToday.strftime("%d %B %Y")} \n")  # date format: dateNumber monthName year
+        if not enrolled:
+            print("No available seats.\n")
+        elif not course_exist:
+            print(f"Course {course_ID} does not exist.\n")
 
 # CODE TO DROP COURSE
 def course_drop(student_ID, course_ID):
     ''' Function: To ask user to enter student id and course id that needs to be dropped from a course'''
+    
     student_removed = False
 
     with open("enrollment.txt", "r") as ENROLLMENT_INFO:
@@ -127,15 +120,13 @@ while True:
 
             # To prevent the user from inputting the wrong student id format
             while True:
-                student_ID = input("Please enter your student ID (e.g. 23132426): ") #converted to int later or else the try catch wouldnt work
-
                 try:
-                    student_ID = int(student_ID) 
-                    if len(str(student_ID)) <= 8: #len cannot be int() so its converted to str()
-                        break
+                    student_ID = int(input("Please enter your student ID (e.g. 23132426): ")) # converted to int later or else the try catch wouldnt work
+                    student_ID = str(student_ID) 
+                    if len(student_ID) > 8 or int(student_ID) < 0:
+                        print("Ensure your student ID contains digits and is less than 8 digits (e.g. 23132426)")
                     else:
-                        print("Ensure your student ID is less than 8 digits (e.g. 23132426): ")
-
+                        break
                 except ValueError:
                     print("Error! Enter a proper student ID")
             
@@ -145,9 +136,12 @@ while True:
             while True:
                 try:
                     student_contact = int(input("Please enter your phone number (e.g. 0161234567): "))
-                    break
+                    if student_contact < 0:
+                        print("Enter a proper phone number! ")
+                    else:
+                        break
                 except ValueError:
-                    print("Error: enter a proper phone number! ")
+                    print("Error: Enter a proper phone number! ")
                     
             adding_new_student(student_ID, student_name,student_contact)
 
@@ -179,10 +173,13 @@ while True:
 
             while True:
                 try:
-                    available_seats = int(input("Please input seats available for the course (e.g. 30): ")) 
-                    break      
+                    available_seats = int(input("Please input seats available for the course (e.g. 30): "))
+                    if available_seats < 0:
+                        print("Error: Do not enter seats less than 0! ")
+                    else:
+                        break      
                 except ValueError:
-                    print("Error: enter a proper number! ")
+                    print("Error: Enter a proper number! ")
 
             adding_new_course(course_ID, course_name, available_seats)  
 
@@ -209,47 +206,55 @@ while True:
                         with open("courses.txt", "r") as COURSES_INFO:
                             print(COURSES_INFO.read())
                             break
-                    else:
+                    elif userInput == "N":
                         break
                 except:
                     print("ERROR! Enter a valid input please. ")
             
             while True:
-                student_ID = input("Please enter your student ID (e.g. 23132426): ") #converted to int later or else the try catch wouldnt work
-
                 try:
-                    student_ID = int(student_ID) 
-                    if len(str(student_ID)) <= 8: #len cannot be int() so its converted to str()
-                        break
+                    student_ID = int(input("Please enter your student ID (e.g. 23132426): ")) # converted to int later or else the try catch wouldnt work
+                    student_ID = str(student_ID) 
+                    if len(student_ID) > 8 or int(student_ID) < 0:
+                        print("Ensure your student ID contains digits and is less than 8 digits (e.g. 23132426)")
                     else:
-                        print("Enter a proper student ID (e.g. 23132426): ")
-
+                        break
                 except ValueError:
-                    print("Error! enter a proper student ID")
+                    print("Error! Enter a proper student ID")
                                                 
             while True:
                 course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
                 if len(course_ID) <= 10:
                     break
                 else:
-                    print("Enter a proper course ID: ") # Can't be int() because have initials of courses at the start
+                    print("Enter a proper course ID ") # Can't be int() because have initials of courses at the start
            
             course_enrollment(student_ID, course_ID)
+            
+            while True:
+                try:
+                    userInput = input("Do you want to see the list of enrolled students? (Y/N): ").upper()
+                    if userInput == "Y":
+                        with open("enrollment.txt", "r") as ENROLLMENT_INFO:
+                            print(ENROLLMENT_INFO.read())
+                            break
+                    elif userInput == "N":
+                        break
+                except:
+                    print("ERROR! Enter a valid input please. ")
 
         case 4: # Drop a course
             
             while True:
-                student_ID = input("Please enter your student ID (e.g. 23132426): ") #converted to int later or else the try catch wouldnt work
-
                 try:
-                    student_ID = int(student_ID)
-                    if len(str(student_ID)) <= 8: #len cannot be int() so its converted to str()
-                        break
+                    student_ID = int(input("Please enter your student ID (e.g. 23132426): ")) # converted to int later or else the try catch wouldnt work
+                    student_ID = str(student_ID) 
+                    if len(student_ID) > 8 or int(student_ID) < 0:
+                        print("Ensure your student ID contains digits and is less than 8 digits (e.g. 23132426)")
                     else:
-                        print("\nEnter a proper student ID (e.g. 23132426)\n")
-
+                        break
                 except ValueError:
-                    print("Error! enter a proper student ID")
+                    print("Error! Enter a proper student ID")
                     
             while True:
                 course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
@@ -259,7 +264,7 @@ while True:
                     print("Enter a proper course ID: ")
             
             course_drop(student_ID,course_ID)
-  
+            
         case 5: # View courses available and space left
             if os.path.exists("courses.txt"):
                 with open("courses.txt", "r") as COURSES_INFO:

@@ -7,9 +7,4 @@ Student ID: 23132432, Student Name: Alex Johnson, Student Contact Number: 012998
 Student ID: 23132433, Student Name: Sarah Wong, Student Contact Number: 0142233445
 Student ID: 23132434, Student Name: Kevin Zhang, Student Contact Number: 0138899001
 Student ID: 23132435, Student Name: Sofia Martinez, Student Contact Number: 0157766554
-Student ID: 23132426, Student Name: Hariish Rao, Student Contact Number: 0162025342 
-Student ID: 23102577, Student Name: Joseph Mah Jun Xiang, Student Contact Number: 060133939805 
-Student ID: 23102577, Student Name: Joseph Mah, Student Contact Number: 0133939805 
-Student ID: -3434343, Student Name: hgfhgfhf, Student Contact Number: 08787878 
-Student ID: -8989898, Student Name: yyuy, Student Contact Number: 0-98798987 
-Student ID: 6878786, Student Name: tyrtyr, Student Contact Number: 0234 
+Student ID: 23132426, Student Name: Hariish, Student Contact Number: 0162025342 

@@ -8,4 +8,4 @@ Course ID: CHM2008, Course Name: Organic Chemistry, Available Seats: 40
 Course ID: HIS1021, Course Name: World History, Available Seats: 55
 Course ID: ECO3090, Course Name: Microeconomics, Available Seats: 48
 Course ID: PSY2053, Course Name: Cognitive Psychology, Available Seats: 0
-Course ID: PSY2002, Course Name: Ethics in Psychology, Available Seats: 69
+
