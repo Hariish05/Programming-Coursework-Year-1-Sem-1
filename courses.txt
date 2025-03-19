@@ -1,11 +1,11 @@
-Course ID: CSC1024, Course Name: Programming Principles, Available Seats: 50
-Course ID: CSC1030, Course Name: Data Structures, Available Seats: 40
 Course ID: CSC1055, Course Name: Machine Learning, Available Seats: 35
-Course ID: CSC2010, Course Name: Operating Systems, Available Seats: 30
-Course ID: CSC2032, Course Name: Computer Networks, Available Seats: 25
-Course ID: CSC3015, Course Name: Cybersecurity, Avaliable Seats: 21
-Course ID: QWE, Course Name: qwe, Available Seats: 20
-Course ID: 123123123, Course Name: 12313, Available Seats: 1
-Course ID: 3123213, Course Name: qweqwe, Available Seats: 2
-Course ID: QWEQWEQE, Course Name: qweqe, Available Seats: 2
-Course ID: CSC23, Course Name: sdad, Available Seats: 3
+Course ID: CSC2044, Course Name: Data Structures, Avaliable Seats: 41
+Course ID: ENG1010, Course Name: Technical Writing, Available Seats: 50
+Course ID: PHY3056, Course Name: Quantum Mechanics, Available Seats: 30
+Course ID: MAT2010, Course Name: Linear Algebra, Available Seats: 45
+Course ID: CSC4099, Course Name: Artificial Intelligence, Available Seats: 25
+Course ID: CHM2008, Course Name: Organic Chemistry, Available Seats: 40
+Course ID: HIS1021, Course Name: World History, Available Seats: 55
+Course ID: ECO3090, Course Name: Microeconomics, Available Seats: 48
+Course ID: PSY2053, Course Name: Cognitive Psychology, Available Seats: 0
+Course ID: PSY2002, Course Name: Ethics in Psychology, Available Seats: 69

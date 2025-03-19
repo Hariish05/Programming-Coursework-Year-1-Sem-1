@@ -1,12 +1,15 @@
-Student ID: 23132426, Student Name: Hariish Rao Paranthaman, Student Contact Number: 165555555
-Student ID: 23132427, Student Name: Alice Johnson, Student Contact Number: 165555556
-Student ID: 23132428, Student Name: Bob Williams, Student Contact Number: 165555557
-Student ID: 23132429, Student Name: Carol Smith, Student Contact Number: 165555558
-Student ID: 23132430, Student Name: David Brown, Student Contact Number: 165555559
-Student ID: 23132431, Student Name: Emily Davis, Student Contact Number: 165555560
-Student ID: 12313, Student Name: asd, Student Contact Number: 12 
-Student ID: 213, Student Name: wqe, Student Contact Number: 123 
-Student ID: wqe, Student Name: qwe, Student Contact Number: 161234567 
-Student ID: 123123, Student Name: 12, Student Contact Number: 3 
-Student ID: 12313123, Student Name: clear, Student Contact Number: 123 
-Student ID: 44445555, Student Name: John, Student Contact Number: 1859595 
+Student ID: 23132427, Student Name: Aisha Lim, Student Contact Number: 0123456789
+Student ID: 23132428, Student Name: John Smith, Student Contact Number: 0179988776
+Student ID: 23132429, Student Name: Emily Chen, Student Contact Number: 0181122334
+Student ID: 23132430, Student Name: Rahul Das, Student Contact Number: 0195566778
+Student ID: 23132431, Student Name: Mei Ling Tan, Student Contact Number: 0163344556
+Student ID: 23132432, Student Name: Alex Johnson, Student Contact Number: 0129988776
+Student ID: 23132433, Student Name: Sarah Wong, Student Contact Number: 0142233445
+Student ID: 23132434, Student Name: Kevin Zhang, Student Contact Number: 0138899001
+Student ID: 23132435, Student Name: Sofia Martinez, Student Contact Number: 0157766554
+Student ID: 23132426, Student Name: Hariish Rao, Student Contact Number: 0162025342 
+Student ID: 23102577, Student Name: Joseph Mah Jun Xiang, Student Contact Number: 060133939805 
+Student ID: 23102577, Student Name: Joseph Mah, Student Contact Number: 0133939805 
+Student ID: -3434343, Student Name: hgfhgfhf, Student Contact Number: 08787878 
+Student ID: -8989898, Student Name: yyuy, Student Contact Number: 0-98798987 
+Student ID: 6878786, Student Name: tyrtyr, Student Contact Number: 0234 
