@@ -113,7 +113,7 @@ while True:
     try:
         userInput = int(input("Enter a number: "))
     except:
-        print("Please enter a number only: ")
+        print("Please enter a number only: \n")
         continue
 
     match userInput:
