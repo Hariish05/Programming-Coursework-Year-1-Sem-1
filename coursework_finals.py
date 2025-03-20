@@ -136,8 +136,8 @@ while True:
             #So if the student_contact is in int() the only format possible is "0161234567"
             while True:
                 try:
-                    student_contact = int(input("Please enter your phone number (e.g. 0161234567): "))
-                    if student_contact < 0:
+                    student_contact = str(input("Please enter your phone number (e.g. 0161234567): "))
+                    if int(student_contact) < 0 or len(student_contact) < 9:
                         print("Enter a proper phone number! ")
                     else:
                         break
