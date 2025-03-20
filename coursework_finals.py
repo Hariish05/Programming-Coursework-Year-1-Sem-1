@@ -173,9 +173,9 @@ while True:
 
             while True:
                 try:
-                    available_seats = int(input("Please input seats available for the course (e.g. 30): "))
-                    if available_seats < 0:
-                        print("Error: Do not enter a number less than 0! ")
+                    available_seats = int(input("Please input total seats available for the course (e.g. 30): "))
+                    if available_seats < 1:
+                        print("Error: Do not enter a number less than 1! ")
                     else:
                         break      
                 except ValueError:
