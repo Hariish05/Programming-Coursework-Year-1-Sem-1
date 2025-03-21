@@ -64,6 +64,7 @@ def course_enrollment(student_ID, course_ID):
 
                 # gets the second element from the parts list, splits it at the : , and returns the part after the colon
                 line = f"Course ID: {course_ID}, Course Name: {parts[1].split(': ')[1]}, Available Seats: {available_seats}\n"
+
             # this is to update course_info with the new updated available_seat total
             COURSES_INFO.write(line)      
         
@@ -85,7 +86,8 @@ def course_drop(student_ID, course_ID):
     
     with open("enrollment.txt", "w") as ENROLLMENT_INFO:
         for records in record_line: 
-            if student_ID in records and course_ID in records: #if studentID and courseID in records, it deletes it, if not it skips and re-write record
+            # if studentID and courseID in records, it deletes it, if not it skips and re-write record
+            if student_ID in records and course_ID in records: 
                 student_removed = True
                 continue
             ENROLLMENT_INFO.write(records)
@@ -176,9 +178,10 @@ while True:
                     print("ERROR! Enter a valid input please. ")
                     
         case 2: # To make a new course
-            # To prevent the user from inputting the wrong courseid format
+            # To prevent the user from inputting the wrong courseID format
             while True:
-                course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
+                course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() 
+                # not int(input()) cause course can be acronym
                 if len(course_ID) <= 10:
                     break
                 else:
@@ -229,7 +232,8 @@ while True:
             
             while True:
                 try:
-                    student_ID = int(input("Please enter your student ID (e.g. 23132426): ")) # converted to int later or else the try catch wouldnt work
+                    student_ID = int(input("Please enter your student ID (e.g. 23132426): ")) 
+                    # converted to int later or else the try catch wouldnt work
                     student_ID = str(student_ID) 
                     if len(student_ID) > 8 or int(student_ID) < 0:
                         print("Ensure your student ID contains digits and is less than 8 digits (e.g. 23132426)")
@@ -239,7 +243,8 @@ while True:
                     print("Error! Enter a proper student ID")
                                                 
             while True:
-                course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
+                course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() 
+                # not int(input()) cause course can be acronym
                 if len(course_ID) <= 10:
                     break
                 else:
@@ -265,7 +270,8 @@ while True:
             
             while True:
                 try:
-                    student_ID = int(input("Please enter your student ID (e.g. 23132426): ")) # converted to int later or else the try catch wouldnt work
+                    student_ID = int(input("Please enter your student ID (e.g. 23132426): ")) 
+                    # converted to int later or else the try catch wouldnt work
                     student_ID = str(student_ID) 
                     if len(student_ID) > 8 or int(student_ID) < 0:
                         print("Ensure your student ID contains digits and is less than 8 digits (e.g. 23132426)")
@@ -275,7 +281,8 @@ while True:
                     print("Error! Enter a proper student ID")
                     
             while True:
-                course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() # not int(input()) cause course can be acronym
+                course_ID = input("Please input the course ID (e.g. CSC1024): ").upper() 
+                # not int(input()) cause course can be acronym
                 if len(course_ID) <= 10:
                     break
                 else:
