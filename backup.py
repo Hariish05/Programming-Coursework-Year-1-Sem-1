@@ -33,44 +33,34 @@ def course_enrollment(student_ID, course_ID):
     # Read available courses
     enrolled = False
     course_exist = False
-    with open("courses.txt", "r") as COURSES_INFO:      
-        # reads contents of the file and saves it to a variable, this is so it can be later added back into the text file
+    with open("courses.txt", "r") as COURSES_INFO:      # reads contents of the file and saves it to a variable, this is so it can be later added back into the text file
         lines = COURSES_INFO.readlines()
 
-    with open("courses.txt", "w") as COURSES_INFO:      
-    # "w" will overwrite the existing contents in the text file
+    with open("courses.txt", "w") as COURSES_INFO:      # "w" will overwrite the existing contents in the text file
         for line in lines:
             if course_ID in line:
                 course_exist = True
-                # splits each line into 3 parts (separated by ",") = so like a list with 3 indexes > ["courseID info", "courseName", "seatInfo"]
-                parts = line.strip().split(", ")        
-                # in part[2] (third index: seatInfo) = splits into two smaller parts (separated by ":") and defines available_seats as the integer in the 2nd index (smallerPart[1])
-                available_seats = int(parts[2].split(": ")[1])      
+                parts = line.strip().split(", ")        # splits each line into 3 parts (separated by ",") = so like a list with 3 indexes > ["courseID info", "courseName", "seatInfo"]
+                available_seats = int(parts[2].split(": ")[1])      # in part[2] (third index: seatInfo) = splits into two smaller parts (separated by ":") and defines available_seats as the integer in the 2nd index (smallerPart[1])
 
-                if available_seats > 0:                
-                # if there is still seats available, -1 off the total available seats, add student and course info into enrollment.txt
+                if available_seats > 0:                 # if there is still seats available, -1 off the total available seats, add student and course info into enrollment.txt
                     available_seats -= 1
                     enrolled = True
                     print(f"Enrolling student {student_ID} in course {course_ID}")
                     
-                    # append enrollment info into "enrollment.txt" file
                     with open("enrollment.txt", "a") as ENROLLMENT_INFO:        
                         ENROLLMENT_INFO.write(f"Student ID: {student_ID}, Course ID: {course_ID}, Enrollment Date: {dateToday.strftime("%d %B %Y")}\n")
-                        # dateToday.strftime("%d %B %Y") >> strftime: returns the string representation of the date or time object; creates today's date in the format "dd mmmm yyyy"
                     print(f"\nNew student enrolled! Student ID: {student_ID}, Course ID: {course_ID}\n")
-
                 else:
                     print("Course is full. Enrollment failed.")
 
-                # gets the second element from the parts list, splits it at the : , and returns the part after the colon
                 line = f"Course ID: {course_ID}, Course Name: {parts[1].split(': ')[1]}, Available Seats: {available_seats}\n"
-            # this is to update course_info with the new updated available_seat total 
-            COURSES_INFO.write(line)      
+                
+            COURSES_INFO.write(line)      # this is to update course_info with the new updated available_seat total
 
-        # error messages if course is full or if course ID does not exist in "courses.txt" file
-        if not enrolled:                   
+        if not enrolled:                  # error message if course is full 
             print("No available seats.\n")
-        elif not course_exist:            
+        elif not course_exist:            # error message if course does not exist in the courses.txt file
             print(f"Course {course_ID} does not exist.\n")
 
 # CODE TO DROP COURSE
@@ -100,10 +90,8 @@ def course_drop(student_ID, course_ID):
         with open("courses.txt", "w") as COURSES_INFO:
             for element in course_lines:
                 if course_ID in element:
-                    element_parts = element.strip().split(", ")                     
-                    # breaks course_lines info ["element 1: ", "element 2: ", "element 3: "]
-                    available_seats = int(element_parts[2].split(": ")[1]) + 1      
-                    # calls index 2 and splits ["element 3: "] into ["element 3: ", "(data)"]. turns index 1 into an int and +1 since student dropped course
+                    element_parts = element.strip().split(", ")                     # breaks course_lines info ["element 1: ", "element 2: ", "element 3: "]
+                    available_seats = int(element_parts[2].split(": ")[1]) + 1      # calls index 2 and splits ["element 3: "] into ["element 3: ", "(data)"]. turns index 1 into an int and +1 since student dropped course
                     element = f"Course ID: {course_ID}, {element_parts[1]}, Available Seats: {available_seats}\n"
                 COURSES_INFO.write(element)
         print("\nYou have successfully dropped the course\n")

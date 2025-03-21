@@ -1,1 +1,6 @@
-Course ID: 1231, Course Name: sdgsgf, Maximum seats: 34 
+Course ID: CSC1024, Course Name: Programming Principles, Available Seats: 50
+Course ID: CSC1030, Course Name: Data Structures, Available Seats: 40
+Course ID: CSC1055, Course Name: Machine Learning, Available Seats: 35
+Course ID: CSC2010, Course Name: Operating Systems, Available Seats: 30
+Course ID: CSC2032, Course Name: Computer Networks, Available Seats: 25
+Course ID: CSC3015, Course Name: Cybersecurity, Available Seats: 20
