@@ -5,24 +5,90 @@ STUDENTS_INFO = "students.txt"
 COURSES_INFO = "courses.txt"
 ENROLLMENT_INFO = "enrollment.txt"
 
+def file_checking(STUDENTS_INFO,COURSES_INFO,ENROLLMENT_INFO):
+    
+    missing_files = []
+
+    if not os.path.exists("students.txt"):
+        print("Student file does not exist")
+        missing_files.append(STUDENTS_INFO)
+    else:
+        print("Student file exist")
+        
+    if not os.path.exists("courses.txt"):
+        print("Courses file does not exist")
+        missing_files.append(COURSES_INFO)
+    else:
+        print("Courses file exist")
+        
+    if not os.path.exists("enrollment.txt"):
+        print("Enrollment file does not exist")
+        missing_files.append(ENROLLMENT_INFO)
+    else:
+        print("Enrollment file exist\n")
+        
+    userInput = 0
+
+    if missing_files:
+        userInput = input("Do you want to create the missing files (Y/N)? ").upper()
+                
+    if userInput == "Y":
+        for files in missing_files:
+            try:
+                with open(files, "x"):
+                    print(f"\"{files}\" has been created")
+            except FileExistsError:
+                print("\nSome files were already created!\n")
+    elif userInput == "N":
+        print("Files weren't created. System may not work!\n")
+
 # STUDENT CODE
 def adding_new_student(student_ID, student_name, student_contact):
     ''' Function: To allow new students to add their student ID, name and phone number '''
+    exist_student_ID = False
+    
+    with open("students.txt", "r") as STUDENTS_INFO:
+        student_lines = STUDENTS_INFO.readlines()
+        for line in student_lines:
+            if student_ID in line:
+                exist_student_ID = True
+                break
 
-    with open("students.txt", "a") as STUDENTS_INFO:
-        STUDENTS_INFO.write(f"Student ID: {student_ID}, ")
-        STUDENTS_INFO.write(f"Student Name: {student_name}, ")
-        STUDENTS_INFO.write(f"Student Contact Number: 0{student_contact} \n")
+        if not exist_student_ID:
+            with open("students.txt", "a") as STUDENTS_INFO:
+                STUDENTS_INFO.write(f"Student ID: {student_ID}, ")
+                STUDENTS_INFO.write(f"Student Name: {student_name}, ")
+                STUDENTS_INFO.write(f"Student Contact Number: 0{student_contact} \n")
+                
+            print(f"\nNew student added! Student ID: {student_ID}, Student Name: {student_name}, Contact Number: 0{student_contact}\n")
+         
+        else:
+            print(f"\nStudent ID: {student_ID} already exist. Please check your student ID.\n")
 
 # COURSES CODE
 def adding_new_course(course_ID, course_name, available_seats):
     ''' Function: To allow new courses to be added with their course ID, course name and available seats for the course. Also clearly displays the courses and their information '''
+ 
+    exist_course_ID = False
+    
+    with open("courses.txt", "r") as COURSES_INFO:
+        courses_lines = COURSES_INFO.readlines()
+        for line in courses_lines:
+            if course_ID in line:
+                exist_course_ID = True
+                break
 
-    with open("courses.txt", "a") as COURSES_INFO: 
-        # writes the courses name in the textfile
-        COURSES_INFO.write(f"Course ID: {course_ID}, ")
-        COURSES_INFO.write(f"Course Name: {course_name}, ")
-        COURSES_INFO.write(f"Available Seats: {available_seats}\n")
+        if not exist_course_ID:
+            with open("courses.txt", "a") as COURSES_INFO: 
+                # writes the courses name in the textfile
+                COURSES_INFO.write(f"Course ID: {course_ID}, ")
+                COURSES_INFO.write(f"Course Name: {course_name}, ")
+                COURSES_INFO.write(f"Available Seats: {available_seats}\n")
+                
+            print(f"\nNew course added! Course ID: {course_ID}, Course Name: {course_name}, Available Seats: {available_seats}\n")
+         
+        else:
+            print(f"\nCourse ID: {course_ID} already exist. Please check your course ID.\n")
 
 # COURSE ENROLLMENT CODE 
 def course_enrollment(student_ID, course_ID):
@@ -33,58 +99,70 @@ def course_enrollment(student_ID, course_ID):
     # Read available courses
     enrolled = False
     course_exist = False
+    exist_student_ID = False
+
     with open("courses.txt", "r") as COURSES_INFO:
         # reads contents of the file and saves it to a variable, this is so it can be later added back into the text file
         lines = COURSES_INFO.readlines()
+        
+    with open("students.txt", "r") as STUDENTS_INFO:
+        student_lines = STUDENTS_INFO.readlines()
+        for line in student_lines:
+            if student_ID in line:
+                exist_student_ID = True
+                break
 
     with open("courses.txt", "w") as COURSES_INFO:
     # "w" will overwrite the existing contents in the text file
-        for line in lines:
-            if course_ID in line:
-                course_exist = True
-                parts = line.strip().split(", ")        
-                # splits each line into 3 parts (separated by ",") = so like a list with 3 indexes > ["courseID info", "courseName", "seatInfo"]
-                available_seats = int(parts[2].split(": ")[1])      
-                # in part[2] (third index: seatInfo) = splits into two smaller parts (separated by ":") and defines available_seats as the integer in the 2nd index (smallerPart[1])
+        if exist_student_ID:
+            for line in lines:
+                if course_ID in line:
+                    course_exist = True
+                    parts = line.strip().split(", ")        
+                    # splits each line into 3 parts (separated by ",") = so like a list with 3 indexes > ["courseID info", "courseName", "seatInfo"]
+                    available_seats = int(parts[2].split(": ")[1])      
+                    # in part[2] (third index: seatInfo) = splits into two smaller parts (separated by ":") and defines available_seats as the integer in the 2nd index (smallerPart[1])
 
-                if available_seats > 0:        
-                    # if there is still seats available, -1 off the total available seats and add student and course info into enrollment.txt
-                    available_seats -= 1
-                    enrolled = True
-                    print(f"Enrolling student {student_ID} in course {course_ID}")
-                    
-                    # append enrollment info into "enrollment.txt" file
-                    with open("enrollment.txt", "a") as ENROLLMENT_INFO:        
-                        ENROLLMENT_INFO.write(f"Student ID: {student_ID}, Course ID: {course_ID}, Enrollment Date: {dateToday.strftime("%d %B %Y")}\n")
-                        # dateToday.strftime("%d %B %Y") >> strftime: returns the string representation of the date or time object; creates today's date in the format "dd mmmm yyyy"
-                    print(f"\nNew student enrolled! Student ID: {student_ID}, Course ID: {course_ID}\n")
-                                  
-                    while True:
-                        try:
-                            userInput = input("Do you want to see the list of enrolled students? (Y/N): ").upper()
-                            if userInput == "Y":
-                                with open("enrollment.txt", "r") as ENROLLMENT_INFO:
-                                    print(ENROLLMENT_INFO.read())
+                    if available_seats > 0:        
+                        # if there is still seats available, -1 off the total available seats and add student and course info into enrollment.txt
+                        available_seats -= 1
+                        enrolled = True
+                        print(f"Enrolling student {student_ID} in course {course_ID}")
+                        
+                        # append enrollment info into "enrollment.txt" file
+                        with open("enrollment.txt", "a") as ENROLLMENT_INFO:        
+                            ENROLLMENT_INFO.write(f"Student ID: {student_ID}, Course ID: {course_ID}, Enrollment Date: {dateToday.strftime("%d %B %Y")}\n")
+                            # dateToday.strftime("%d %B %Y") >> strftime: returns the string representation of the date or time object; creates today's date in the format "dd mmmm yyyy"
+                        print(f"\nNew student enrolled! Student ID: {student_ID}, Course ID: {course_ID}\n")
+                                    
+                        while True:
+                            try:
+                                userInput = input("Do you want to see the list of enrolled students? (Y/N): ").upper()
+                                if userInput == "Y":
+                                    with open("enrollment.txt", "r") as ENROLLMENT_INFO:
+                                        print(ENROLLMENT_INFO.read())
+                                        break
+                                elif userInput == "N":
                                     break
-                            elif userInput == "N":
-                                break
-                        except:
-                            print("ERROR! Enter a valid input please. ")
-                
-                else:
-                    print("Course is full. Enrollment failed.")
+                            except:
+                                print("ERROR! Enter a valid input please. ")
+                    
+                    else:
+                        print("Course is full. Enrollment failed.")
 
-                # gets the second element from the parts list, splits it at the : , and returns the part after the colon
-                line = f"Course ID: {course_ID}, Course Name: {parts[1].split(': ')[1]}, Available Seats: {available_seats}\n"
+                    # gets the second element from the parts list, splits it at the : , and returns the part after the colon
+                    line = f"Course ID: {course_ID}, Course Name: {parts[1].split(': ')[1]}, Available Seats: {available_seats}\n"
 
-            # this is to update course_info with the new updated available_seat total
-            COURSES_INFO.write(line)      
-        
-        # error messages if course is full or if course ID does not exist in "courses.txt" file
-        if not enrolled:
-            print("No available seats.\n")
-        elif not course_exist:
-            print(f"Course {course_ID} does not exist.\n")
+                # this is to update course_info with the new updated available_seat total
+                COURSES_INFO.write(line)      
+            
+            # error messages if course is full or if course ID does not exist in "courses.txt" file
+            if not course_exist:
+                print(f"Course {course_ID} does not exist.\n")
+            elif not enrolled:
+                print("No available seats.\n")
+        else:
+            print(f"\nStudent ID: {student_ID} does not exist\n")
 
 # CODE TO DROP COURSE
 def course_drop(student_ID, course_ID):
@@ -126,8 +204,10 @@ def course_drop(student_ID, course_ID):
         print("\nEnrollment record not found\n")
 
 # ASKING USER RESPONSE CODE
-while True:
+file_checking(STUDENTS_INFO,COURSES_INFO,ENROLLMENT_INFO)
 
+while True:
+    
     print("Welcome to the course enrollment program!")
     print("1. Add a new student")
     print("2. Add a new course")
@@ -174,9 +254,7 @@ while True:
                     
             # calls adding_new_student function
             adding_new_student(student_ID, student_name,student_contact)
-
-            print(f"\nNew student added! Student ID: {student_ID}, Student Name: {student_name}, Contact Number: 0{student_contact}\n")
-            
+   
             while True:
                 try:
                     userInput = input("Do you want to see the list of students? (Y/N): ").upper()
@@ -213,8 +291,6 @@ while True:
 
             # calls adding_new_course function
             adding_new_course(course_ID, course_name, available_seats)  
-
-            print(f"\nNew course added! Course ID: {course_ID}, Course Name: {course_name}, Available Seats: {available_seats}\n")
             
             while True:
                 try:
@@ -296,7 +372,7 @@ while True:
                 with open("courses.txt", "r") as COURSES_INFO:
                     print(f"\n{COURSES_INFO.read()}\n")
             else:
-                print("Error! File not found. ")
+                print("Error! File not found. Please exit and restart the program")
             
         case 6: # View all students and information
             # checks if file path for "students.txt" exists in directory
@@ -304,10 +380,10 @@ while True:
                 with open("students.txt", "r") as STUDENT_INFO:
                     print(f"\n{STUDENT_INFO.read()}\n")
             else:
-                print("Error! File not found. ")
+                print("Error! File not found. Please exit and restart the program")
 
         case 7:
-            print("Program ended.")
+            print("Program ended.\n")
             break
 
         case _:
