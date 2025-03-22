@@ -59,6 +59,18 @@ def course_enrollment(student_ID, course_ID):
                         # dateToday.strftime("%d %B %Y") >> strftime: returns the string representation of the date or time object; creates today's date in the format "dd mmmm yyyy"
                     print(f"\nNew student enrolled! Student ID: {student_ID}, Course ID: {course_ID}\n")
                 
+                    while True:
+                            try:
+                                userInput = input("Do you want to see the list of enrolled students? (Y/N): ").upper()
+                                if userInput == "Y":
+                                    with open("enrollment.txt", "r") as ENROLLMENT_INFO:
+                                        print(ENROLLMENT_INFO.read())
+                                        break
+                                elif userInput == "N":
+                                    break
+                            except:
+                                print("ERROR! Enter a valid input please. ")
+                            
                 else:
                     print("Course is full. Enrollment failed.")
 
@@ -253,18 +265,6 @@ while True:
            
             # calls course_enrollment function
             course_enrollment(student_ID, course_ID)
-            
-            while True:
-                try:
-                    userInput = input("Do you want to see the list of enrolled students? (Y/N): ").upper()
-                    if userInput == "Y":
-                        with open("enrollment.txt", "r") as ENROLLMENT_INFO:
-                            print(ENROLLMENT_INFO.read())
-                            break
-                    elif userInput == "N":
-                        break
-                except:
-                    print("ERROR! Enter a valid input please. ")
 
         case 4: # Drop a course
             
