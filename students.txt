@@ -1,0 +1,10 @@
+Student ID: 23132427, Student Name: Aisha Lim, Student Contact Number: 0123456789
+Student ID: 23132428, Student Name: John Smith, Student Contact Number: 0179988776
+Student ID: 23132429, Student Name: Emily Chen, Student Contact Number: 0181122334
+Student ID: 23132430, Student Name: Rahul Das, Student Contact Number: 0195566778
+Student ID: 23132431, Student Name: Mei Ling Tan, Student Contact Number: 0163344556
+Student ID: 23132432, Student Name: Alex Johnson, Student Contact Number: 0129988776
+Student ID: 23132433, Student Name: Sarah Wong, Student Contact Number: 0142233445
+Student ID: 23132434, Student Name: Kevin Zhang, Student Contact Number: 0138899001
+Student ID: 23132435, Student Name: Sofia Martinez, Student Contact Number: 0157766554
+Student ID: 23132426, Student Name: Hariish, Student Contact Number: 0162025342 
