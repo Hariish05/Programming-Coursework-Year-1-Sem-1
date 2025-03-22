@@ -297,7 +297,7 @@ while True:
                     print(f"\n{COURSES_INFO.read()}\n")
             else:
                 print("Error! File not found. ")
-            
+
         case 6: # View all students and information
             # checks if file path for "students.txt" exists in directory
             if os.path.exists("students.txt"):
@@ -306,9 +306,9 @@ while True:
             else:
                 print("Error! File not found. ")
 
-        case 7:
+        case 7: # Exit program
             print("Program ended.")
             break
 
-        case _:
+        case _: # if input does not fulfill the conditions above
             print("\nInvalid Choice. Try Again\n")
