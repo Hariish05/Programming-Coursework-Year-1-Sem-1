@@ -175,7 +175,7 @@ def course_drop(student_ID, course_ID):
         # each line is now stored in record_line
     
     with open("enrollment.txt", "w") as ENROLLMENT_INFO:
-        for records in record_line: 
+        for records in record_line:
             # if studentID and courseID in records, it deletes it, if not it skips and re-write record
             if student_ID in records and course_ID in records: 
                 student_removed = True
