@@ -8,3 +8,8 @@ Student ID: 23132433, Student Name: Sarah Wong, Student Contact Number: 01422334
 Student ID: 23132434, Student Name: Kevin Zhang, Student Contact Number: 0138899001
 Student ID: 23132435, Student Name: Sofia Martinez, Student Contact Number: 0157766554
 Student ID: 23132426, Student Name: Hariish, Student Contact Number: 0162025342 
+Student ID: 21332133, Student Name: Hariish Rao Paranthaman, Student Contact Number: 0162025342 
+Student ID: 12345678, Student Name: John Doe, Student Contact Number: 012345678
+Student ID: 25002600, Student Name: Steve, Student Contact Number: 0166565789 
+Student ID: 55556666, Student Name: Hariish, Student Contact Number: 0162024342 
+Student ID: 90908080, Student Name: Jane Doe, Student Contact Number: 0192020543 

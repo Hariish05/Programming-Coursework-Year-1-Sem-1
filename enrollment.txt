@@ -7,7 +7,3 @@ Student ID: 23132429, Course ID: CHM2008, Enrollment Date: 3 April 2025
 Student ID: 23132434, Course ID: HIS1021, Enrollment Date: 27 March 2025
 Student ID: 23132435, Course ID: ECO3090, Enrollment Date: 15 April 2025
 Student ID: 23132433, Course ID: PSY2053, Enrollment Date: 10 April 2025
-Student ID: 23132426, Course ID: PSY2053, Enrollment Date: 19 March 2025 
-Student ID: 23132426, Course ID: PSY2053, Enrollment Date: 19 March 2025 
-Student ID: 23132426, Course ID: PSY2053, Enrollment Date: 19 March 2025 
-Student ID: 23102577, Course ID: PSY2053, Enrollment Date: 19 March 2025 

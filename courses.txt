@@ -7,4 +7,8 @@ Course ID: CSC4099, Course Name: Artificial Intelligence, Available Seats: 25
 Course ID: CHM2008, Course Name: Organic Chemistry, Available Seats: 40
 Course ID: HIS1021, Course Name: World History, Available Seats: 55
 Course ID: ECO3090, Course Name: Microeconomics, Available Seats: 48
-Course ID: PSY2053, Course Name: Cognitive Psychology, Available Seats: 0
+Course ID: PSY205, Course Name: Cognitive Psychology, Available Seats: 0
+Course ID: MON1000, Course Name: Monday Blues, Available Seats: 50
+Course ID: C123, Course Name: Creative Writing, Available Seats: 20
+Course ID: ENG1050, Course Name: English Writing for Scientist, Available Seats: 10
+Course ID: SNG4500, Course Name: Singing for Starters, Available Seats: 30
