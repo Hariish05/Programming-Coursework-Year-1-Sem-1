@@ -4,3 +4,4 @@ Course ID: CSC1055, Course Name: Machine Learning, Available Seats: 35
 Course ID: CSC2010, Course Name: Operating Systems, Available Seats: 30
 Course ID: CSC2032, Course Name: Computer Networks, Available Seats: 25
 Course ID: CSC3015, Course Name: Cybersecurity, Available Seats: 20
+Course ID: C123, Course Name: Creative Writing, Available Seats: 19

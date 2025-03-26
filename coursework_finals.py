@@ -101,7 +101,7 @@ def course_enrollment(student_ID, course_ID):
     exist_student_ID = False
 
     with open("courses.txt", "r") as COURSES_INFO:
-        # reads contents of the file and saves it to a variable, this is so it can be later added back into the text file
+        # reads contents of the courses.txt file and saves it to a variable, this is so it can be later added back into the text file
         lines = COURSES_INFO.readlines()
         
     with open("students.txt", "r") as STUDENTS_INFO:
